@@ -1,0 +1,16 @@
+{
+  "name": "gsc-sos.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gsc-sos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tcsa",
+  "license": "MIT",
+  "devDependencies": {
+	"grunt": "0.4.x",
+	"grunt-cli": "0.1.x",
+	"grunt-contrib-yuidoc": "~0.5.x"
+  }
+}

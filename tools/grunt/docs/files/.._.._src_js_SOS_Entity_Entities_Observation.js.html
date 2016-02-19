@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\Entity\Entities\Observation.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\Entity\Entities\Observation.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿
+/**
+ * Instancia un objeto Observation. 
+ *
+ * @class Observation
+ * @extends SOS.Entity
+ * @param {object} { url: urlServicio, valueReference: the_geom } 
+ * - Requerido: URL del servicio al cual se conectará
+ * - Opcional: ValueReference: Nombre del atributo que hace referencia a la geometría, por defecto om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape
+ * @throws {Error} Lanza error cuando no se construye el objeto mediante new.
+ * @throws {Error} Lanza error cuando no se indica URL al servicio o una instancia de SOS.
+ */
+SOS.entity.Observation = function (options) {
+    var _ent = this;
+
+    _ent.entityName = &#x27;Observation&#x27;;
+    _ent.capsOperation = &#x27;GetObservation&#x27;;
+
+    SOS.Entity.apply(_ent, arguments);
+
+    _ent.filters = {};
+    _ent.sortByDateTime = options.sortByDateTime || true;
+    _ent.valueReference = options.valueReference || &#x27;om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape&#x27;;
+
+    _ent.sos.registerUserCallback({
+        event: SOS.Const.Events.SOS_CAPABILITIES_AVAILABLE, callback: function () {
+            _ent._bindFiltersByCapabilities();
+        }
+    });
+};
+SOS.inherit(SOS.entity.Observation, SOS.Entity);
+
+// Completa en base al capabilities los tipos de filtro temporal disponibles
+SOS.entity.Observation.prototype._bindFiltersByCapabilities = function () {
+    var _ent = this;
+
+    if (_ent.sos.capsFormatter.data &amp;&amp; _ent.sos.capsFormatter.data.filterCapabilities) {
+
+        var temporalCaps = _ent.sos.capsFormatter.data.filterCapabilities.filter_Capabilities &amp;&amp; _ent.sos.capsFormatter.data.filterCapabilities.filter_Capabilities.temporal_Capabilities || _ent.sos.capsFormatter.data.filterCapabilities.temporal;
+        var operands = null;
+
+        if (temporalCaps)
+            operands = temporalCaps.operands;
+        else if (temporalCaps.temporal_Capabilities)
+            operands = temporalCaps.temporalOperands &amp;&amp; temporalCaps.temporal_Capabilities.temporalOperands;
+
+        // timeInstant / timePeriod
+        _ent.sos.obsFormatter.filters[&#x27;temporalOperands&#x27;] = {};
+        // get timeInstant / timePeriod
+        if (operands instanceof Array) {
+            for (var i = 0; i &lt; operands.length; i++) {
+                var operand = operands[i].$ref.split(&#x27;/&#x27;).pop().replace(&#x27;#&#x27;, &#x27;&#x27;);
+                _ent.sos.obsFormatter.filters[&#x27;temporalOperands&#x27;][operand] = operand;
+            }
+        } else if (operands instanceof Object &amp;&amp; operands.temporalOperand) {
+            var ope = temporalCaps.temporalOperands.temporalOperand;
+            if (ope instanceof Array) {
+                for (var i = 0; i &lt; ope.length; i++) {
+                    var operand = ope[i][&#x27;@name&#x27;].split(&#x27;:&#x27;).pop();
+                    _ent.sos.obsFormatter.filters[&#x27;temporalOperands&#x27;][operand] = operand;
+                }
+            }
+        }
+
+        // equals, during...
+        _ent.sos.obsFormatter.filters[&#x27;temporalOperators&#x27;] = {};
+
+        // get equals, during...
+        var ope = temporalCaps.temporalOperators &amp;&amp; temporalCaps.temporalOperators.temporalOperator || temporalCaps.operators;
+        if (ope instanceof Array) {
+            for (var i = 0; i &lt; ope.length; i++) {
+                var operator = ope[i][&#x27;@name&#x27;];
+                _ent.sos.obsFormatter.filters[&#x27;temporalOperators&#x27;][operator] = operator;
+            }
+        } else if (ope instanceof Object &amp;&amp; SOS.Utils.isValidObject(ope)) {
+            for (var opr in ope) {
+                _ent.sos.obsFormatter.filters[&#x27;temporalOperators&#x27;][opr] = opr;
+            }
+        }
+    }
+};
+
+SOS.entity.Observation.prototype.getDataAvailable = function () {
+    //&#x27;GetDataAvailability&#x27;
+};
+
+/**
+  * Solicita las observaciones que cumplan con los filtros indicados, si no se indican filtros obtendrá todos las observaciones disponibles. 
+  *
+  * Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE
+  * @method getObservation
+  * @async  
+  * @param {object} [params] Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+  * spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] }, 
+  * temporal: { operator: &#x27;After&#x27;, on: &#x27;resultTime&#x27; | &#x27;phenomenonTime&#x27;, operand: &#x27;TimeInstant&#x27;, timeEvent: new Date().getDate() - 1 } }. - Todos son opcionales
+  * @param {function} [callback] Función que se ejecutará al finalizar la petición
+  * @param {string} event [Evento] personalizado que se lanzará al finalizar la petición
+  * @param {SOS:entity.Offering} [off] Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes. 
+  * @return {SOS.Promise} Promesa
+  * @example       
+        var obs = new SOS.entity.Observation({ url: &#x27;http://sos_service/service&#x27; });        
+        obs.getObservation({ procedure: &#x27;http://sos_service/srr/an1/qa01&#x27; }).then(function (obs) {
+            obs = obs || [];            
+            console.log(&#x27;Observaciones por procedimiento: &#x27; + &#x27;http://sos_service/srr/an1/qa01&#x27;);
+            console.log(&#x27;Número de observaciones: &#x27; + obs.length);            
+        });        
+  */
+SOS.entity.Observation.prototype.getObservation = function (params, callback, event, off) {
+    var _ent = this;
+
+    if (event instanceof SOS.Offering) {
+        off = event;
+        event = null;
+    }
+
+    return new SOS.Promise(function (resolve, reject) {
+        _ent.sos.getCapabilities().then(function () {
+            _ent.getPostUrl().then(function (url) {
+                if (url &amp;&amp; url.length &gt; 0) {
+
+                    var _parseObservation = function (callback) {
+                        if (_ent.data) {
+                            if (_ent.data.GetObservationResponse &amp;&amp; _ent.data.GetObservationResponse.observationData)
+                                _ent.data = _ent.sos.SOSObservations = _ent.data.GetObservationResponse.observationData;
+
+                            if (_ent.sortByDateTime &amp;&amp; _ent.data instanceof Array) {
+                                // ordenamos los resultados por fecha
+                                _ent.data = _ent.data.sort(_ent._sortObservations);
+                            } else if (_ent.data.oM_Observation) _ent.data = _ent.sos.SOSObservations = _ent.data.oM_Observation;
+
+                            var result = [];
+                            if (_ent.data instanceof Array) {
+                                for (var i = 0; i &lt; _ent.data.length; i++)
+                                    result.push(new SOS.entity.ObservationRecord(_ent.data[i]));
+                            }
+                            else result.push(new SOS.entity.ObservationRecord(_ent.data));
+
+                            if (result)
+                                _ent.data = _ent.sos.SOSObservations = result;
+
+                            // si la consulta se ha solicitado desde un offering se completa el atributo observationData del offering y se lanza el correspondiente evento
+                            if (off) {
+                                off.observationData = result;
+                                _ent.sos.events.triggerEvent(SOS.Const.Events.SOS_OFFERING_OBSERVATION_AVAILABLE);
+                            } else _ent.sos.events.triggerEvent(event || SOS.Const.Events.SOS_OBSERVATION_AVAILABLE);
+
+                            resolve(result);
+                        }
+
+                        if (callback)
+                            callback(_ent.data);
+                    };
+
+                    SOS.Request.POST({
+                        url: url,
+                        async: _ent.sos.config.async,
+                        failure: function (error) {
+                            console.log(SOS.Const.ErrorText.SOS_OBSERVATION_ERROR);
+                            console.log(error);
+                            reject(SOS.Const.ErrorText.SOS_OBSERVATION_ERROR + &#x27; :&#x27; + error);
+                        },
+                        success: function (response) {
+                            if (response &amp;&amp; response.responseText)
+                                _ent.get.read(response.responseText);
+
+                            _parseObservation(callback);
+                        },
+                        data: _ent.get.write(params)
+                    });
+                } else resolve([]);
+            });
+        });
+    });
+};
+
+/**
+  * Solicita la primera observación disponible que cumpla con los filtros indicados. 
+  *
+  * Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE
+  * @method getObservationFirst
+  * @async  
+  * @param {object} [params] Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+  * spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.  
+  * @param {function} [callback] Función que se ejecutará al finalizar la petición - Opcional.   
+  * @param {SOS:entity.Offering} [off] Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional. 
+  * @return {SOS.Promise} Promesa
+  */
+SOS.entity.Observation.prototype.getObservationFirst = function (params, callback, entScope) {
+    var _ent = this;
+
+    params = params || {};
+    params.temporal = {
+        operator: &#x27;TEquals&#x27;,
+        on: &#x27;resultTime&#x27;, // phenomenonTime
+        operand: &#x27;TimeInstant&#x27;,
+        timeEvent: &#x27;getFirst&#x27;
+    };
+
+    return _ent.getObservation(params, callback, SOS.Const.Events.SOS_FIRST_OBSERVATION_AVAILABLE, entScope);
+};
+
+/**
+  * Solicita la última observación disponible que cumpla con los filtros indicados. 
+  * Completa la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.  
+  * Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE
+  * @method getObservationLatest
+  * @async  
+  * @param {object} [params] Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+  * spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.  
+  * @param {function} [callback] Función que se ejecutará al finalizar la petición - Opcional.   
+  * @param {SOS:entity.Offering} [off] Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional. 
+  * @return {SOS.Promise} Promesa  
+  */
+SOS.entity.Observation.prototype.getObservationLatest = function (params, callback, entScope) {
+    var _ent = this;
+
+    params = params || {};
+    params.temporal = {
+        operator: &#x27;TEquals&#x27;,
+        on: &#x27;resultTime&#x27;, // phenomenonTime
+        operand: &#x27;TimeInstant&#x27;,
+        timeEvent: &#x27;latest&#x27;
+    };
+
+    return _ent.getObservation(params, callback, SOS.Const.Events.SOS_LATEST_OBSERVATION_AVAILABLE, entScope);
+};
+
+/**
+  * Solicita las observaciones disponibles que cumpla con los filtros indicados entre fecha desde y fecha hasta. 
+  * Completa la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.  
+  * Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE
+  * @method getObservationFromTo
+  * @async  
+  * @param {object} [params] Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+  * spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.  
+  * @param {function} [callback] Función que se ejecutará al finalizar la petición.
+  * @param {SOS:entity.Offering} [off] Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes.
+  * @return {SOS.Promise} Promesa
+  * @example
+        var obs = new SOS.entity.Observation({ url: &#x27;http://sos_service/service&#x27; });
+        obs.getObservationFromTo({
+                featureOfInterest: &quot;http://sos_service/olk/ad1&quot;, 
+                procedure: &quot;http://sos_service/olk/ad1/cl01&quot;, 
+                observedproperty: &quot;http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#Cl2&quot;, 
+                temporal: {
+                    start: new Date(2015, 6, 6, 10, 1, 0), 
+                    end: new Date(2015, 6, 6, 10, 5, 0)
+                }
+            }, function (data) {
+                data = data || [];
+                console.log(data.length + &#x27; elementos encontrados&#x27;);
+            });
+  */
+
+SOS.entity.Observation.prototype.getObservationFromTo = function (params, callback, entScope) {
+    var _ent = this;
+
+    params = params || {};
+
+    if (params.temporal) {
+        SOS.Utils.extend(params.temporal, {
+            operator: &#x27;During&#x27;,
+            on: &#x27;resultTime&#x27;, // phenomenonTime
+            operand: &#x27;TimePeriod&#x27;
+        });
+    }
+
+    return _ent.getObservation(params, callback, SOS.Const.Events.SOS_OBSERVATION_AVAILABLE, entScope);
+};
+
+// Get the FOI object from observation data
+SOS.entity.Observation.prototype.getFeatureOfInterest = function (opts) {
+    var opts = opts || { foisIndex: 0, featuresIndex: 0 };
+
+    return _ent.data.fois[opts.foisIndex].features[opts.featuresIndex];
+};
+
+SOS.entity.Observation.prototype._sortObservations = function (a, b) {
+    var ret = 0;
+
+    var aTimeInstant = a.oM_Observation.resultTime.timeInstant || a.oM_Observation.phenomenonTime.timeInstant;
+    var bTimeInstant = b.oM_Observation.resultTime.timeInstant || b.oM_Observation.phenomenonTime.timeInstant;
+
+    if (aTimeInstant.timePosition &lt; bTimeInstant.timePosition) {
+        ret = -1;
+    } else if (aTimeInstant.timePosition &gt; bTimeInstant.timePosition) {
+        ret = 1;
+    }
+
+    return ret;
+};
+
+SOS.entity.Observation.prototype.bindSourceXML = function () {
+    var _ent = this;
+
+    var xmlSource = new SOS.source.XML({
+        required: []
+    });
+
+    xmlSource.write = function (params) {
+        var _src = this;
+
+        _src.__proto__.write(params, [&#x27;offering&#x27;, &#x27;procedure&#x27;, &#x27;observedProperty&#x27;, &#x27;featureOfInterest&#x27;, &#x27;temporal&#x27;, &#x27;spatial&#x27;, &#x27;responseFormat&#x27;]);
+
+        var filterNodes = {
+            offering: &#x27;&lt;sos:offering&gt;filter&lt;/sos:offering&gt; &#x27;,
+            procedure: &#x27;&lt;sos:procedure&gt;filter&lt;/sos:procedure&gt; &#x27;,
+            observedProperty: &#x27;&lt;sos:observedProperty&gt;filter&lt;/sos:observedProperty&gt; &#x27;,
+            featureOfInterest: &#x27;&lt;sos:featureOfInterest&gt;filter&lt;/sos:featureOfInterest&gt; &#x27;
+        };
+
+        var getFilterNodes = function (filterNodeType, filters) {
+            for (var i = 0; i &lt; filters.length; i++)
+                getRequest += filterNodes[filterNodeType].replace(/filter/g, filters[i]);
+        };
+
+        var getRequest = &#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &#x27; +
+            &#x27;&lt;sos:GetObservation &#x27; +
+                &#x27;xmlns:sos=&quot;http://www.opengis.net/sos/2.0&quot; &#x27; +
+                &#x27;xmlns:fes=&quot;http://www.opengis.net/fes/2.0&quot; &#x27; +
+                &#x27;xmlns:gml=&quot;http://www.opengis.net/gml/3.2&quot; &#x27; +
+                &#x27;xmlns:swe=&quot;http://www.opengis.net/swe/2.0&quot; &#x27; +
+                &#x27;xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; &#x27; +
+                &#x27;xmlns:swes=&quot;http://www.opengis.net/swes/2.0&quot; &#x27; +
+                &#x27;xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; service=&quot;SOS&quot; version=&quot;2.0.0&quot; xsi:schemaLocation=&quot;http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd&quot;&gt; &#x27;;
+
+        if (params.procedure)
+            getFilterNodes(&#x27;procedure&#x27;, params.procedure instanceof Array ? params.procedure : [params.procedure]);
+
+        if (params.offering)
+            getFilterNodes(&#x27;offering&#x27;, params.offering instanceof Array ? params.offering : [params.offering]);
+
+        if (params.observedProperty)
+            getFilterNodes(&#x27;observedProperty&#x27;, params.observedProperty instanceof Array ? params.observedProperty : [params.observedProperty]);
+
+        if (params.temporal &amp;&amp; params.temporal.operator &amp;&amp; params.temporal.on &amp;&amp; ((params.temporal.start &amp;&amp; params.temporal.end) || params.temporal.timeEvent)) {
+
+            var formatRequestTimeString = function (D) {
+                var newDate = new Date(D.getTime() + D.getTimezoneOffset() * 60 * 1000);
+
+                var offset = D.getTimezoneOffset() / 60;
+                var hours = D.getHours();
+
+                newDate.setHours(hours - offset);
+                
+                return newDate.toISOString().replace(/\.\d+Z$/, &quot;Z&quot;);
+            };
+
+            if (params.temporal.start &amp;&amp; params.temporal.end) {
+                var timeString = SOS.Utils.isoToTimeInterval(params.temporal.start, params.temporal.end);
+                timeString = SOS.Utils.adjustTimeInterval(timeString, -1, 1);
+            }
+
+            getRequest += &#x27;&lt;sos:temporalFilter&gt; &#x27; +
+                            &#x27;&lt;fes:&#x27; + params.temporal.operator + &#x27;&gt; &#x27; +
+                                &#x27;&lt;fes:ValueReference&gt;&#x27; + params.temporal.on + &#x27;&lt;/fes:ValueReference&gt; &#x27; +
+                                &#x27;&lt;gml:&#x27; + params.temporal.operand + &#x27; gml:id=&quot;tp_1&quot;&gt; &#x27;;
+            switch (params.temporal.operand) {
+                case &#x27;TimePeriod&#x27;: {
+                    getRequest += &#x27;&lt;gml:beginPosition&gt;&#x27; + (timeString &amp;&amp; formatRequestTimeString(timeString.start) || &#x27;&#x27;) + &#x27;&lt;/gml:beginPosition&gt; &#x27;;
+                    getRequest += &#x27;&lt;gml:endPosition&gt;&#x27; + (timeString &amp;&amp; formatRequestTimeString(timeString.end) || &#x27;&#x27;) + &#x27;&lt;/gml:endPosition&gt; &#x27;;
+                    break;
+                }
+                case &#x27;TimeInstant&#x27;: {
+                    if (params.temporal.timeEvent instanceof Date) {
+                        var timeString = SOS.Utils.isoToTimeInterval(params.temporal.timeEvent);
+                        getRequest += &#x27;&lt;gml:timePosition&gt;&#x27; + (timeString &amp;&amp; formatRequestTimeString(params.temporal.timeEvent) || &#x27;&#x27;) + &#x27;&lt;/gml:timePosition&gt; &#x27;;
+                    } else getRequest += &#x27;&lt;gml:timePosition&gt;&#x27; + params.temporal.timeEvent + &#x27;&lt;/gml:timePosition&gt; &#x27;;
+                    break;
+                }
+            }
+            getRequest += &#x27;&lt;/gml:&#x27; + params.temporal.operand + &#x27;&gt; &#x27; +
+                      &#x27;&lt;/fes:&#x27; + params.temporal.operator + &#x27;&gt; &#x27; +
+                    &#x27;&lt;/sos:temporalFilter&gt;&#x27;;
+        }
+
+        if (params.featureOfInterest)
+            getFilterNodes(&#x27;featureOfInterest&#x27;, params.featureOfInterest instanceof Array ? params.featureOfInterest : [params.featureOfInterest]);
+
+        if (params.spatial &amp;&amp; params.spatial.srs &amp;&amp; params.spatial.lowerCorner &amp;&amp; params.spatial.lowerCorner.length &gt; 1 &amp;&amp; params.spatial.upperCorner &amp;&amp; params.spatial.upperCorner.length &gt; 1) {
+            getRequest += &#x27;&lt;sos:spatialFilter&gt; &#x27; +
+                                        &#x27;&lt;fes:BBOX&gt; &#x27; +
+                                            &#x27;&lt;fes:ValueReference&gt;&#x27; + _ent.valueReference + &#x27;&lt;/fes:ValueReference&gt; &#x27; +
+                                            &#x27;&lt;gml:Envelope srsName=&quot;&#x27; + (params.spatial.srs.toString().indexOf(&#x27;/&#x27;) &lt; 0 ? &#x27;http://www.opengis.net/def/crs/EPSG/0/&#x27; + params.spatial.srs.toString() + &#x27;&quot;&#x27; : params.spatial.srs) + &#x27;&gt; &#x27; +
+                                                &#x27;&lt;gml:lowerCorner&gt;&#x27; + params.spatial.lowerCorner[0] + &#x27; &#x27; + params.spatial.lowerCorner[1] + &#x27;&lt;/gml:lowerCorner&gt; &#x27; +
+                                                &#x27;&lt;gml:upperCorner&gt;&#x27; + params.spatial.upperCorner[0] + &#x27; &#x27; + params.spatial.upperCorner[1] + &#x27;&lt;/gml:upperCorner&gt; &#x27; +
+                                            &#x27;&lt;/gml:Envelope&gt; &#x27; +
+                                        &#x27;&lt;/fes:BBOX&gt; &#x27; +
+                                    &#x27;&lt;/sos:spatialFilter&gt; &#x27;;
+        }
+
+        if (params.responseFormat)
+            getRequest += &#x27;&lt;sos:responseFormat&gt;&#x27; + params.responseFormat + &#x27;&lt;/sos:responseFormat&gt;&#x27;;
+
+
+        getRequest += &#x27;&lt;/sos:GetObservation&gt; &#x27;;
+
+        return getRequest;
+    };
+
+    return xmlSource;
+};
+
+SOS.entity.Observation.prototype.bindSourceJSON = function () {
+    var _ent = this;
+
+    var jsonSource = new SOS.source.JSON();
+
+    jsonSource.write = function () {
+        var _src = this;
+
+        var data = {
+            &quot;request&quot;: &quot;GetObservation&quot;,
+            &quot;service&quot;: &quot;SOS&quot;,
+            &quot;version&quot;: &quot;2.0.0&quot;
+        };
+
+        if (params.procedures)
+            data[&quot;procedure&quot;] = params.procedures instanceof Array ? params.procedures : [params.procedures];
+
+        if (params.offering)
+            data[&quot;offering&quot;] = params.offering instanceof Array ? params.offering : [params.offering];
+
+        if (params.observedProperties)
+            data[&quot;observedProperty&quot;] = params.observedProperties instanceof Array ? params.observedProperties : [params.observedProperties];
+
+        if (params.featuresOfInterest)
+            data[&quot;featureOfInterest&quot;] = params.featuresOfInterest instanceof Array ? params.featuresOfInterest : [params.featuresOfInterest];
+
+        if (params.spatial &amp;&amp; params.spatial.geomType &amp;&amp; params.spatial.coordinates)
+            data[&quot;spatialFilter&quot;] = {
+                &quot;bbox&quot;: {
+                    &quot;ref&quot;: _ent._spatialShapeProperty,
+                    &quot;value&quot;: {
+                        &quot;type&quot;: params.spatial.geomType,
+                        &quot;coordinates&quot;: params.spatial.coordinates
+                    }
+                }
+            };
+
+        if (params.temporal &amp;&amp; params.temporal.operator &amp;&amp; params.temporal.on &amp;&amp; ((params.temporal.start &amp;&amp; params.temporal.end) || params.temporal.timeEvent)) {
+            if (params.temporal.start &amp;&amp; params.temporal.end) {
+                var timeString = SOS.Utils.isoToTimeInterval(params.temporalFilter.start, params.temporalFilter.end);
+                timeString = SOS.Utils.adjustTimeInterval(timeString, -1, 1);
+
+                var formatRequestTimeString = function (D) {
+                    return D.toISOString().replace(/\.\d+Z$/, &quot;Z&quot;);
+                };
+            }
+
+            data[&quot;temporalFilter&quot;] = {};
+            data[&quot;temporalFilter&quot;][params.temporal.operator] = {
+                &quot;ref&quot;: arams.temporalFilter.on
+            };
+
+            if (params.temporal.start &amp;&amp; params.temporal.end &amp;&amp; timeString)
+                data[&quot;temporalFilter&quot;][params.temporal.operator][&#x27;value&#x27;] = [
+                          formatRequestTimeString(timeString.start),
+                          formatRequestTimeString(timeString.end)
+                ];
+            else
+                data[&quot;temporalFilter&quot;][params.temporal.operator][&#x27;value&#x27;] = params.temporal.timeEvent;
+        }
+
+        return _src.__proto__.write(data);
+    };
+};
+/**
+ * Contiene el nombre del atributo que hace referencia a la geometría 
+ * @property valueReference
+ * @type string
+ * @default om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape
+ */
+/**
+ * Contiene los filtros temporales y espaciales disponibles extraído del capabilities 
+ * @property filters
+ * @type {object} 
+ * @default {}
+ */
+/**
+ * Ordenar las observaciones resultantes por fecha y hora 
+ * @property sortByDateTime
+ * @type {boolean} 
+ * @default {true}
+ */
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

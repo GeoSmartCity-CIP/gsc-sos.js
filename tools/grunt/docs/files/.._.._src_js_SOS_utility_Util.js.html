@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\utility\Util.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\utility\Util.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿
+var SOS = SOS || {};
+
+SOS.Utils = {
+    Geom: {
+        // Crea bbox mediante centro y distancia al vértice, en unidades de mapa
+        createBBox: function (originCoords, radius) {
+            var angle = Math.PI * ((1 / 4) - (1 / 2));
+            var rotatedAngle, x, y;
+            var xPoints = [], yPoints = [];
+
+            for (var i = 0; i &lt; 4; ++i) {
+                rotatedAngle = angle + (i * 2 * Math.PI / 4);
+                x = originCoords[0] + (radius * Math.cos(rotatedAngle));
+                y = originCoords[1] + (radius * Math.sin(rotatedAngle));
+                xPoints.push(x);
+                yPoints.push(y);
+            }
+
+            var bbox = {
+                lowerCorner: [Math.min.apply(null, xPoints), Math.min.apply(null, yPoints)],
+                upperCorner: [Math.max.apply(null, xPoints), Math.max.apply(null, yPoints)]
+            };
+
+            return bbox;
+        }
+    },
+    Converter: {
+        Types: {
+            INT: &#x27;int&#x27;,
+            FLOAT: &#x27;float&#x27;
+        },
+        DataTypeConverter: function () {
+            var _dtc = this;
+            _dtc.createConverter = function (type) {
+                var converter;
+
+                switch (type) {
+                    case SOS.Utils.Converter.Types.FLOAT:
+                        converter = new SOS.Utils.Converter.CFloat();
+                        break;
+                    case SOS.Utils.Converter.Types.INT:
+                        converter = new SOS.Utils.Converter.CInt();
+                        break;
+                }
+
+                converter.type = type;
+
+                if (!(converter.convert))
+                    converter.convert = function () { throw Error(&#x27;Missing convert function!!&#x27;); };
+
+                return converter;
+            }
+        },
+        CFloat: function () {
+            // valida si se trata de un float
+            this.is = function (value) {
+                return value.toString().match(SOS.Utils.regExes.isFloatNumber) != null;
+            };
+            // convierte el valor pasado a float
+            this.convert = function (value) {
+                return parseFloat(value);
+            };
+        },
+        CInt: function () {
+            // valida si se trata de un int
+            this.is = function (value) {
+                return value.toString().match(SOS.Utils.regExes.isIntNumber) != null;
+            };
+            // convierte el valor pasado en un int
+            this.convert = function (value) {
+                return parseInt(value);
+            };
+        }
+    },
+    regExes: {
+        trimSpace: (/^\s*|\s*$/g),
+        removeSpace: (/\s*/g),
+        splitSpace: (/\s+/),
+        trimComma: (/\s*,\s*/g),
+        isIntNumber: (/^(\d+)/),
+        isFloatNumber: (/-?\d+[\.\,]\d+/)        
+    },
+    getParameterString: function (a) { var b = [], c; for (c in a) { var d = a[c]; if (null != d &amp;&amp; &quot;function&quot; != typeof d) { if (&quot;object&quot; == typeof d &amp;&amp; d.constructor == Array) { for (var e = [], f, g = 0, h = d.length; g &lt; h; g++) f = d[g], e.push(encodeURIComponent(null === f || void 0 === f ? &quot;&quot; : f)); d = e.join(&quot;,&quot;) } else d = encodeURIComponent(d); b.push(encodeURIComponent(c) + &quot;=&quot; + d) } } return b.join(&quot;&amp;&quot;) },
+    uomDisplayTitles: {
+        &quot;Cel&quot;: &quot;&amp;deg;C&quot;,
+        &quot;deg&quot;: &quot;&amp;deg;&quot;,
+        &quot;m/s&quot;: &quot;m s&lt;sup&gt;-1&lt;/sup&gt;&quot;
+    },
+
+    nonPrintingCharacterLabels: {
+        &#x27; &#x27;: &quot;(space)&quot;,
+        &#x27;\t&#x27;: &quot;(tab)&quot;,
+        &#x27;\n&#x27;: &quot;(newline)&quot;,
+        &#x27;\r\n&#x27;: &quot;(carriage return/newline)&quot;,
+        &#x27;\r&#x27;: &quot;(carriage return)&quot;
+    },
+
+    fullyQualifiedNames: {
+        url: { test: /^\s*http/i, re: /^.*\/(.+)$/, s: &quot;$1&quot; },
+        urn: { test: /^\s*urn/i, re: /^.*:/, s: &quot;&quot; }
+    },
+
+    indexOf: function (a, b) { if (&quot;function&quot; == typeof a.indexOf) return a.indexOf(b); for (var c = 0, d = a.length; c &lt; d; c++) if (a[c] == b) return c; return -1 },
+
+    isValidObject: function (x) {
+        return (typeof x !== &quot;undefined&quot; &amp;&amp; x !== null);
+    },
+
+    isArray: function (x) {
+        return (Object.prototype.toString.call(x) === &quot;[object Array]&quot;);
+    },
+
+    isNumber: function (x) {
+        return (!isNaN(parseFloat(x)) &amp;&amp; isFinite(x));
+    },
+
+    getUniqueList: function (x) {
+        var a = [];
+
+        for (var i = 0, len = x.length; i &lt; len; i++) {
+            if (this.indexOf(a, x[i]) === -1) {
+                a.push(x[i]);
+            }
+        }
+
+        return a;
+    },
+
+    toTitleCase: function (x) {
+        var y = x;
+
+        if (typeof x == &quot;string&quot;) {
+            var a = x.split(/ /);
+
+            for (var j = 0, len = a.length; j &lt; len; j++) {
+                a[j] = a[j].replace(/^(.)/, function (match, $1, offset, original) { return ($1).toUpperCase(); });
+            }
+            y = a.join(&quot; &quot;);
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.toTitleCase(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    toDisplayName: function (x) {
+        var y = x;
+
+        if (typeof x == &quot;string&quot;) {
+            y = x.replace(/_/g, &quot; &quot;);
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.toDisplayName(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    _fqnToName: function (x, re, s) {
+        return x.replace(re, s);
+    },
+
+    _lookupFqnFromName: function (x, a, re, s) {
+        var y = x;
+
+        for (var i = 0, len = a.length; i &lt; len; i++) {
+            if (this._fqnToName(a[i], re, s) === x) {
+                y = a[i];
+                break;
+            }
+        }
+
+        return y;
+    },
+
+    fqnToName: function (x, opts) {
+        var y = x;
+        var fqn = this.fullyQualifiedNames;
+
+        if (this.isValidObject(fqn)) {
+            if (typeof x == &quot;string&quot;) {
+                if (opts &amp;&amp; opts.hasOwnProperty(&quot;re&quot;) &amp;&amp; opts.hasOwnProperty(&quot;s&quot;)) {
+                    // User-defined transform from fully-qualified name (FQN) to name
+                    y = this._fqnToName(x, opts.re, opts.s);
+                } else {
+                    if ((fqn.url.test).test(x)) {
+                        // FQN is a URL
+                        y = this._fqnToName(x, fqn.url.re, fqn.url.s);
+                    } else {
+                        // FQN is a URN
+                        y = this._fqnToName(x, fqn.urn.re, fqn.urn.s);
+                    }
+                }
+            } else if (this.isArray(x)) {
+                y = [];
+
+                for (var i = 0, len = x.length; i &lt; len; i++) {
+                    y.push(this.fqnToName(x[i], opts));
+                }
+            }
+        }
+
+        return y;
+    },
+
+    lookupFqnFromName: function (x, a, opts) {
+        var y = x;
+        var fqn = this.fullyQualifiedNames;
+
+        if (this.isValidObject(fqn)) {
+            if (typeof x == &quot;string&quot;) {
+                if (opts &amp;&amp; opts.hasOwnProperty(&quot;re&quot;) &amp;&amp; opts.hasOwnProperty(&quot;s&quot;)) {
+                    // User-defined transform from fully-qualified name (FQN) to name
+                    y = this._lookupFqnFromName(x, a, opts.re, opts.s);
+                } else {
+                    if ((fqn.url.test).test(a[0])) {
+                        // FQN is a URL
+                        y = this._lookupFqnFromName(x, a, fqn.url.re, fqn.url.s);
+                    } else {
+                        // FQN is a URN
+                        y = this._lookupFqnFromName(x, a, fqn.urn.re, fqn.urn.s);
+                    }
+                }
+            } else if (this.isArray(x)) {
+                y = [];
+
+                for (var i = 0, len = x.length; i &lt; len; i++) {
+                    y.push(this.lookupFqnFromName(x[i], a, opts));
+                }
+            }
+        }
+
+        return y;
+    },
+
+    urlToName: function (x) {
+        return this.fqnToName(x, this.fullyQualifiedNames.url);
+    },
+
+    lookupUrlFromName: function (x, a) {
+        return this.lookupFqnFromName(x, a, this.fullyQualifiedNames.url);
+    },
+
+    urnToName: function (x) {
+        return this.fqnToName(x, this.fullyQualifiedNames.urn);
+    },
+
+    lookupUrnFromName: function (x, a) {
+        return this.lookupFqnFromName(x, a, this.fullyQualifiedNames.urn);
+    },
+
+    toDisplayUom: function (x) {
+        var y = x;
+
+        /* SOS units are encoded according to Unified Code for Units of Measure
+           (UCUM).  See http://unitsofmeasure.org/ */
+        if (this.isValidObject(this.uomDisplayTitles)) {
+            if (typeof x == &quot;string&quot;) {
+                if (this.uomDisplayTitles[x]) {
+                    y = this.uomDisplayTitles[x];
+                }
+            } else if (this.isArray(x)) {
+                y = [];
+
+                for (var i = 0, len = x.length; i &lt; len; i++) {
+                    y.push(this.toDisplayUom(x[i]));
+                }
+            }
+        }
+
+        return y;
+    },
+
+    nonPrintingCharacterToLabel: function (x) {
+        var y = x;
+
+        if (this.isValidObject(this.nonPrintingCharacterLabels)) {
+            if (typeof x == &quot;string&quot;) {
+                if (this.nonPrintingCharacterLabels[x]) {
+                    y = this.nonPrintingCharacterLabels[x];
+                }
+            } else if (this.isArray(x)) {
+                y = [];
+
+                for (var i = 0, len = x.length; i &lt; len; i++) {
+                    y.push(this.nonPrintingCharacterToLabel(x[i]));
+                }
+            }
+        }
+
+        return y;
+    },
+
+    newlineToBr: function (x) {
+        var y = x;
+
+        if (typeof x == &quot;string&quot;) {
+            y = x.replace(/(\r\n|\n|\r)/g, &quot;&lt;br/&gt;&quot;);
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.newlineToBr(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    applyTemplate: function (x, template, reFlags) {
+        var reFlags = reFlags || &quot;gi&quot;;
+        var t = template;
+
+        // Can&#x27;t test x is an object first, as an array is also an object
+        if (this.isArray(x)) {
+            t = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                t.push(this.applyTemplate(x[i], template, reFlags));
+            }
+        } else {
+            if (t) {
+                for (var p in x) {
+                    var re = new RegExp(&quot;\\[%\\s*&quot; + p + &quot;\\s*%\\]&quot;, reFlags);
+                    t = t.replace(re, x[p]);
+                }
+            }
+        }
+
+        return t;
+    },
+
+    isoToDateObject: function (x) {
+        var y = x;
+
+        // Example datetime string: 2012-01-01T01:00:00.000Z (or date only)
+        if (typeof x == &quot;string&quot;) {
+            var a = x.split(/T/);
+            if (a.length &lt; 2) { a[1] = &quot;00:00:00.000Z&quot;; }
+            var d = a[0].split(/-/);
+            a[1] = a[1].replace(/Z$/, &quot;&quot;);
+
+            var tz = /([-+])(\d{2})[:]?(\d{2})?/.exec(a[1]);
+            var tzMins = 0;
+            if (tz) {
+                if (tz.length &gt; 2) { tzMins += parseInt(tz[2], 10) * 60; }
+                if (tz.length &gt; 3) { tzMins += parseInt(tz[3], 10); }
+                if (tz.length &gt; 1 &amp;&amp; tz[1] === &#x27;+&#x27;) { tzMins *= -1; }
+            }
+            a[1] = a[1].replace(/[-+].+$/, &quot;&quot;);
+
+            var t = a[1].split(/:/);
+            var ms = t[2].replace(/^\d+\./, &quot;&quot;);
+            t[2] = t[2].replace(/\.\d+$/, &quot;&quot;);
+
+            y = new Date(Date.UTC(parseInt(d[0], 10),
+                         parseInt(d[1] - 1, 10),
+                         parseInt(d[2], 10),
+                         parseInt(t[0], 10),
+                         parseInt(t[1], 10),
+                         parseInt(t[2], 10),
+                         parseInt(ms, 10)));
+
+            if (!isNaN(y)) {
+                if (tzMins != 0) {
+                    y.setTime(y.getTime() + tzMins * 60 * 1000);
+                }
+            } else {
+                y = x;
+            }
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.isoToDateObject(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    isoToJsTimestamp: function (x) {
+        var y = x;
+
+        if (typeof x == &quot;string&quot;) {
+            var D = this.isoToDateObject(x);
+            y = D.getTime();
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.isoToJsTimestamp(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    jsTimestampToIso: function (x) {
+        var y = x;
+
+        if (typeof x == &quot;string&quot; || typeof x == &quot;number&quot;) {
+            var D = new Date(x);
+
+            if (!isNaN(D)) {
+                y = D.toISOString();
+            }
+        } else if (this.isArray(x)) {
+            y = [];
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(this.jsTimestampToIso(x[i]));
+            }
+        }
+
+        return y;
+    },
+
+    isoToTimeInterval: function (start, end) {
+        var t = { start: null, end: null };
+
+        t.start = this.isoToDateObject(start);
+        t.end = this.isoToDateObject(end);
+
+        return t;
+    },
+
+    adjustTimeInterval: function (t, startOffset, endOffset) {
+        t.start.setTime(t.start.getTime() + startOffset);
+        t.end.setTime(t.end.getTime() + endOffset);
+
+        return t;
+    },
+
+    parseRelativeTime: function (x) {
+        var t = { start: null, end: null };
+        var local = new Date();
+        var T = local.getTime();
+        var s = x;
+        var u = 0, c = 0, d = 0;
+
+        // N.B.: We get local time but always use the getUTC* methods
+
+        t.start = new Date(T);
+        t.end = new Date(T);
+
+        // For convenience we accept today, yesterday, current*, &amp; previous*
+        s = s.replace(/to|current/i, &quot;this&quot;);
+        s = s.replace(/yester|previous/i, &quot;last&quot;);
+
+        if ((/hour$/i).test(s)) {
+            u = 60 * 60 * 1000;
+            c = T % u;
+        }
+        if ((/day$/i).test(s)) {
+            u = 24 * 60 * 60 * 1000;
+            c = T % u;
+        }
+        if ((/week$/i).test(s)) {
+            d = 24 * 60 * 60 * 1000;
+            u = 7 * 24 * 60 * 60 * 1000;
+            c = local.getUTCDay() * d + T % d;
+        }
+        if ((/month$/i).test(s)) {
+            d = 24 * 60 * 60 * 1000;
+            u = 31 * 24 * 60 * 60 * 1000;
+            c = (local.getUTCDate() - 1) * d + T % d;
+        }
+        if ((/year$/i).test(s)) {
+            d = 24 * 60 * 60 * 1000;
+            u = 366 * 24 * 60 * 60 * 1000;
+            c = (local.getUTCDayOfYear() - 1) * d + T % d;
+        }
+
+        if ((/^this/i).test(s)) {
+            this.adjustTimeInterval(t, -c, -c + u - 1);
+        }
+        if ((/^last/i).test(s)) {
+            this.adjustTimeInterval(t, -c - u, -c - 1);
+        }
+        if ((/^rolling/i).test(s)) {
+            this.adjustTimeInterval(t, -u, -1);
+        }
+
+        return t;
+    },
+
+    extractColumn: function (x, n) {
+        var y = [];
+
+        if (this.isArray(x)) {
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                y.push(x[i][n]);
+            }
+        }
+
+        return y;
+    },
+
+    sum: function (x) {
+        var y = 0;
+
+        for (var i = 0, len = x.length; i &lt; len; i++) {
+            y += parseFloat(x[i]);
+        }
+
+        return y;
+    },
+
+    computeStats: function (x) {
+        var y = { N: 0, sum: 0, min: 0, max: 0, mean: 0, median: 0, q1: 0, q3: 0, variance: 0, sd: 0 };
+
+        if (this.isArray(x) &amp;&amp; x.length &gt; 1) {
+            y.N = x.length;
+            y.sum = this.sum(x);
+            y.mean = y.sum / y.N;
+            y.min = Math.min.apply(null, x);
+            y.max = Math.max.apply(null, x);
+
+            // We must copy x as sort() sorts in-place
+            var sorted = x.slice(0);
+            sorted.sort(function (a, b) { return a - b; });
+
+            var floor = Math.floor(y.N / 2);
+            y.median = ((y.N % 2) == 0) ? this.sum(sorted.slice(floor, floor + 2)) / 2 : sorted[floor + 1];
+            floor = Math.floor(y.N / 4);
+            y.q1 = ((y.N % 2) == 0) ? this.sum(sorted.slice(floor, floor + 2)) / 2 : sorted[floor + 1];
+            floor *= 3;
+            y.q3 = ((y.N % 2) == 0) ? this.sum(sorted.slice(floor, floor + 2)) / 2 : sorted[floor + 1];
+
+            var t = 0;
+
+            for (var i = 0, len = x.length; i &lt; len; i++) {
+                t += Math.pow(x[i] - y.mean, 2);
+            }
+            y.variance = t / (y.N - 1);
+            y.sd = Math.sqrt(y.variance);
+        }
+
+        return y;
+    },
+
+    computeHistogram: function (x) {
+        var y = { min: 0, max: 0, lower: 0, upper: 0, nBins: 0, binWidth: 0, data: [] };
+
+        if (this.isArray(x) &amp;&amp; x.length &gt; 1) {
+            var j = 0;
+            var sorted = x.slice(0);
+            sorted.sort(function (a, b) { return a - b; });
+            y.min = Math.min.apply(null, sorted);
+            y.max = Math.max.apply(null, sorted);
+            y.lower = Math.floor(y.min);
+            y.upper = Math.ceil(y.max);
+            y.nBins = 10;
+
+            if ((y.upper - y.lower) &gt; 0) {
+                y.binWidth = Math.pow(10, Math.round(Math.log(y.upper - y.lower) / Math.log(10))) / y.nBins;
+
+                for (var i = y.lower; i &lt; y.upper; i += y.binWidth) {
+                    var bin = [i, 0];
+                    for (var len = sorted.length; j &lt; len; j++) {
+                        if (sorted[j] &lt; i + y.binWidth) {
+                            bin[1]++;
+                        } else {
+                            break;
+                        }
+                    }
+                    y.data.push(bin);
+                }
+            }
+        }
+
+        return y;
+    },
+
+    mergeSeries: function (x, options) {
+        var options = options || { n: 0, m: 1, missing: null };
+        var ivar = [], dataIndices = [];
+        var y = [];
+
+        if (this.isArray(x)) {
+            if (x.length &gt; 1) {
+                // Get a unique, sorted superset of the independent variable
+                for (var i = 0, len = x.length; i &lt; len; i++) {
+                    ivar = ivar.concat(this.extractColumn(x[i], options.n));
+                    dataIndices.push(0);
+                }
+                ivar.sort(function (a, b) { return a - b; });
+                ivar = this.getUniqueList(ivar);
+
+                // Combine into a sparse table (left outer join)
+                for (var i = 0, ilen = ivar.length; i &lt; ilen; i++) {
+                    var row = [];
+                    row[0] = ivar[i];
+
+                    for (var j = 0, jlen = x.length; j &lt; jlen; j++) {
+                        row[j + 1] = options.missing;
+
+                        for (var k = dataIndices[j], klen = x[j].length; k &lt; klen; k++) {
+                            if (x[j][k][options.n] == ivar[i]) {
+                                row[j + 1] = x[j][k][options.m];
+                                dataIndices[j] = k;
+                                break;
+                            }
+                        }
+                    }
+                    y.push(row);
+                }
+            } else {
+                // Optimisation: x has only one series, so short-circuiting
+                y = x[0];
+            }
+        }
+
+        return y;
+    },
+
+    removeMissingDataRows: function (x, options) {
+        var options = options || { missing: null };
+        var y = [];
+
+        if (this.isArray(x) &amp;&amp; this.isArray(x[0])) {
+            for (var i = 0, ilen = x.length; i &lt; ilen; i++) {
+                var foundMissing = false;
+
+                for (var j = 0, jlen = x[i].length; j &lt; jlen; j++) {
+                    if (x[i][j] == options.missing) {
+                        foundMissing = true;
+                        break;
+                    }
+                }
+                if (foundMissing == false) {
+                    y.push(x[i]);
+                }
+            }
+        }
+
+        return y;
+    },
+
+    reorderColumns: function (x, cols) {
+        var y = [];
+
+        if (this.isArray(x) &amp;&amp; this.isArray(x[0]) &amp;&amp; this.isArray(cols)) {
+            if (Math.max.apply(null, cols) &lt; x[0].length &amp;&amp; Math.min.apply(null, cols) &gt;= 0) {
+                for (var i = 0, ilen = x.length; i &lt; ilen; i++) {
+                    var row = [];
+
+                    for (var j = 0, jlen = cols.length; j &lt; jlen; j++) {
+                        row.push(x[i][cols[j]]);
+                    }
+                    y.push(row);
+                }
+            }
+        }
+
+        return y;
+    },
+
+    removeColumns: function (x, cols) {
+        var y = [];
+        var keepCols = [];
+
+        /* The reorderColumns() function returns a new table, hence passing
+           a column list without the to-be-removed column indices effectively
+           removes those columns */
+        if (this.isArray(x) &amp;&amp; this.isArray(x[0]) &amp;&amp; this.isArray(cols)) {
+            if (Math.max.apply(null, cols) &lt; x[0].length &amp;&amp; Math.min.apply(null, cols) &gt;= 0) {
+                for (var i = 0, ilen = x[0].length; i &lt; ilen; i++) {
+                    var removeColumn = false;
+
+                    for (var j = 0, jlen = cols.length; j &lt; jlen; j++) {
+                        if (i == cols[j]) {
+                            removeColumn = true;
+                            break;
+                        }
+                    }
+                    if (removeColumn == false) {
+                        keepCols.push(i);
+                    }
+                }
+                y = this.reorderColumns(x, keepCols);
+            }
+        }
+
+        return y;
+    },
+
+    extend: function (a, b) {
+        a = a || {};
+        if (b) {
+            for (var c in b) {
+                var d = b[c]; void 0 !== d &amp;&amp; (a[c] = d)
+            } !(&quot;function&quot; == typeof window.Event &amp;&amp; b instanceof window.Event) &amp;&amp; (b.hasOwnProperty &amp;&amp; b.hasOwnProperty(&quot;toString&quot;)) &amp;&amp; (a.toString = b.toString)
+        } return a
+    },
+
+    applyDefaults: function (to, from) {
+        to = to || {};
+        /*
+         * FF/Windows &lt; 2.0.0.13 reports &quot;Illegal operation on WrappedNative
+         * prototype object&quot; when calling hawOwnProperty if the source object is an
+         * instance of window.Event.
+         */
+        var fromIsEvt = typeof window.Event == &quot;function&quot;
+                        &amp;&amp; from instanceof window.Event;
+
+        for (var key in from) {
+            if (to[key] === undefined ||
+                (!fromIsEvt &amp;&amp; from.hasOwnProperty
+                 &amp;&amp; from.hasOwnProperty(key) &amp;&amp; !to.hasOwnProperty(key))) {
+                to[key] = from[key];
+            }
+        }
+        /**
+         * IE doesn&#x27;t include the toString property when iterating over an object&#x27;s
+         * properties with the for(property in object) syntax.  Explicitly check if
+         * the source has its own toString property.
+         */
+        if (!fromIsEvt &amp;&amp; from &amp;&amp; from.hasOwnProperty
+           &amp;&amp; from.hasOwnProperty(&#x27;toString&#x27;) &amp;&amp; !to.hasOwnProperty(&#x27;toString&#x27;)) {
+            to.toString = from.toString;
+        }
+
+        return to;
+    },
+
+    urlAppend: function (url, paramStr) {
+        var newUrl = url;
+        if (paramStr) {
+            var parts = (url + &quot; &quot;).split(/[?&amp;]/);
+            newUrl += (parts.pop() === &quot; &quot; ?
+                paramStr :
+                parts.length ? &quot;&amp;&quot; + paramStr : &quot;?&quot; + paramStr);
+        }
+        return newUrl;
+    }
+};
+
+SOS.inherit = function (C, P) {
+    var F = function () { };
+    F.prototype = P.prototype;
+    C.prototype = new F;
+    var i, l, o;
+    for (i = 2, l = arguments.length; i &lt; l; i++) {
+        o = arguments[i];
+        if (typeof o === &quot;function&quot;) {
+            o = o.prototype;
+        }
+        SOS.Utils.extend(C.prototype, o);
+    }
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

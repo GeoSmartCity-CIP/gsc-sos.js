@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\Entity\Offering.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\Entity\Offering.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿/**
+ * Instancia un objeto Offering.
+ *
+ * @class Offering 
+ * @param {object} [options] Objeto de configuración
+ */
+SOS.Offering = function (options) {
+    var _off = this;
+
+    _off.entityName = &#x27;Offering&#x27;;
+
+    _off.initialize(options);
+};
+
+
+/**
+ * Contiene las observaciones resultantes de la última petición GetObservation asociadas a un offering
+ * @property observationData
+ * @type object
+ */
+
+/**
+ * Instancia del objeto SOS al cual estará conectado el objeto instanciado.
+ * @property sos
+ * @type SOS
+ */
+
+/**
+ * Indentificador del offering.
+ * @property identifier
+ * @type string
+ */
+
+/**
+ * Nombre del offering.
+ * @property name
+ * @type string
+ */
+
+/**
+ * FeatureOfInterest relacionados con el offering.
+ * @property featureOfInterestIds
+ * @type array
+ */
+
+/**
+ * Tipos de featureOfInterest relacionados con el offering.
+ * @property featureOfInterestType
+ * @type array
+ */
+
+/**
+ * Propiedades observadas por el offering.
+ * @property observedProperties
+ * @type array
+ */
+
+/**
+ * Área observada por el offering.
+ * @property observedArea
+ * @type object crs, lowerLeft, upperRight
+ */
+
+/**
+ * Constructor for a SOS.Offering object
+ *
+ * @constructor
+ */
+SOS.Offering.prototype.initialize = function (options) {
+    var _off = this;
+
+    _off.sos = options.sos || sos;
+
+    _off.observationData = &#x27;&#x27;;
+
+    _off.identifier = options.identifier || options.id || &#x27;&#x27;;
+    _off.name = options.name || &#x27;&#x27;;
+
+    _off.featureOfInterestIds = options.featureOfInterestIds instanceof Array &amp;&amp; options.featureOfInterestIds || options.featureOfInterestIds &amp;&amp; [options.featureOfInterestIds] || [];
+    _off.featureOfInterestType = options.featureOfInterestType instanceof Array &amp;&amp; options.featureOfInterestType || options.featureOfInterestType &amp;&amp; [options.featureOfInterestType] || [];
+    _off.observedProperties = options.observedProperties instanceof Array &amp;&amp; options.observedProperties || options.observedProperties &amp;&amp; [options.observedProperties] || [];
+    _off.observationType = options.observationType instanceof Array &amp;&amp; options.observationType || options.observationType &amp;&amp; [options.observationType] || [];
+    if (options.observedArea &amp;&amp; options.observedArea.crs &amp;&amp; options.observedArea.lowerCorner &amp;&amp; options.observedArea.upperCorner)
+        _off.observedArea = options.observedArea &amp;&amp; options.observedArea.crs + &#x27; - &#x27; + options.observedArea.lowerCorner + options.observedArea.upperCorner
+    else _off.observedArea = {
+        crs: &#x27;&#x27;,
+        lowerLeft: [],
+        upperRight: []
+    };
+
+    _off.phenomenonTime = options.phenomenonTime instanceof Array &amp;&amp; options.phenomenonTime || options.phenomenonTime &amp;&amp; [options.phenomenonTime] || [];
+    _off.procedures = options.procedures instanceof Array &amp;&amp; options.procedures || [options.procedures] || [];
+    _off.procedureDescriptionFormat = options.procedureDescriptionFormat instanceof Array &amp;&amp; options.procedureDescriptionFormat || options.procedureDescriptionFormat &amp;&amp; [options.procedureDescriptionFormat] || [];
+    _off.responseFormat = options.responseFormat instanceof Array &amp;&amp; options.responseFormat || options.responseFormat &amp;&amp; [options.responseFormat] || [];
+    _off.resultTime = options.resultTime instanceof Array &amp;&amp; options.resultTime || options.resultTime &amp;&amp; [options.resultTime] || [];
+
+    //SOS.Utils.extend(this, options);
+};
+
+/**
+ * Destructor for a SOS.Offering object
+ * 
+ * @destructor
+ */
+SOS.Offering.prototype.destroy = function () { };
+
+
+/**
+  * Obtiene los identificadores de los featuresOfInterest relacionados.
+  * @method getFeatureOfInterestIds
+  * @return {array}
+  */
+SOS.Offering.prototype.getFeatureOfInterestIds = function () {
+    var _off = this;
+
+    return SOS.Utils.getUniqueList(_off.featureOfInterestIds);
+};
+
+/**
+  * Obtiene los identificadores de los procedimientos.
+  * @method getProcedureIds
+  * @return {array}
+  */
+SOS.Offering.prototype.getProcedureIds = function () {
+    var _off = this;
+
+    return SOS.Utils.getUniqueList(_off.procedures);
+};
+
+/**
+  * Obtiene los identificadores de las propiedades.
+  * @method getObservedPropertyIds
+  * @return {array}
+  */
+SOS.Offering.prototype.getObservedPropertyIds = function () {
+    var _off = this;
+
+    return SOS.Utils.getUniqueList(_off.observedProperties);
+};
+
+/**
+  * Obtiene los nombres de las propiedades.
+  * @method getObservedPropertyNames
+  * @return {array}
+  */
+SOS.Offering.prototype.getObservedPropertyNames = function () {
+    var _off = this;
+
+    return SOS.Utils.fqnToName(SOS.Utils.getUniqueList(_off.observedProperties));
+};
+
+/**
+  * Filtra las propiedades de un offering por las indicadas en la lista, 
+  * este filtro de propiedades se aplicará al solicitar observaciones del offering.
+  * @method filterObservedProperties
+  * @param {array} lista de propiedades
+  */
+SOS.Offering.prototype.filterObservedProperties = function (list) {
+    var _off = this;
+
+    if (!SOS.Utils.isArray(list)) {
+        list = [list];
+    }
+
+    var masterList = (SOS.Utils.isValidObject(_off.observedPropertiesOriginal) ? _off.observedPropertiesOriginal : _off.observedProperties);
+    var fqns = SOS.Utils.lookupFqnFromName(list, masterList);
+
+    if (!SOS.Utils.isValidObject(_off.observedPropertiesOriginal)) {
+        this.observedPropertiesOriginal = _off.observedProperties;
+    }
+    this.observedProperties = fqns;
+};
+
+/**
+  * Elimina el posible filtro de propiedades observadas aplicado.
+  * @method unfilterObservedProperties  
+  */
+SOS.Offering.prototype.unfilterObservedProperties = function () {
+    var _off = this;
+
+    if (SOS.Utils.isValidObject(_off.observedPropertiesOriginal)) {
+        _off.observedProperties = _off.observedPropertiesOriginal;
+        delete _off.observedPropertiesOriginal;
+    }
+};
+
+/**
+  * Solicita la última observación disponible para el offering, aplica el filtro de propiedades establecido mediante el método [filterObservedProperties].
+  * @param {function} callback
+  * @method getLatestObservations  
+  */
+SOS.Offering.prototype.getLatestObservations = function (callback) {
+    var _off = this;
+
+    // Optionally the caller can register a callback for the obs request
+    if (arguments.length &gt; 0) {
+        _off.sos.registerUserCallback({ event: SOS.Const.Events.SOS_OFFERING_OBSERVATION_AVAILABLE, callback: callback });
+    }
+
+    var params = {
+        offering: _off.identifier || _off.id,
+        observedProperties: _off.observedProperties
+    };
+
+    if (_off.sos.foiId)
+        params.foi = { featuresOfInterest: _off.sos.foiId };
+
+    _off.sos.obsFormatter.getObservationLatest(params, callback, _off);
+};
+
+/**
+  * Solicita las observaciones disponibles para el offering con filtro temporal de fecha desde - fechahasta.
+  * @param {datetime} start
+  * @param {datetime} end
+  * @param {function} callback
+  * @method getLatestObservations  
+  */
+SOS.Offering.prototype.getObservations = function (start, end, callback) {
+    var _off = this;
+
+    // Optionally the caller can register a callback for the obs request
+    if (arguments.length &gt; 2) {
+        _off.sos.registerUserCallback({ event: SOS.Const.Events.SOS_OFFERING_OBSERVATION_AVAILABLE, callback: callback });
+    }
+    
+    var params = {
+        offering: _off.id || _off.identifier,
+        observedProperties: _off.observedProperties,
+        temporal: { start: start, end: end, operator: &#x27;During&#x27;, on: &#x27;phenomenonTime&#x27;, operand: &#x27;TimePeriod&#x27; }
+    };
+
+    if (_off.sos.foiId)
+        params.foi = { featuresOfInterest: _off.sos.foiId };
+
+    _off.sos.obsFormatter.getObservationByScope(params, callback, SOS.Const.Events.SOS_OFFERING_OBSERVATION_AVAILABLE, _off);
+};
+
+/**
+ * Get a count of the number of records contained in the internal
+ * observations object
+ */
+SOS.Offering.prototype.getCountOfObservations = function () {
+    var _off = this;
+    var n = 0;
+
+    if (_off.observationData) {
+        if (SOS.Utils.isValidObject(_off.observationData)) {
+            if (_off.observationData instanceof Array)
+                n = _off.observationData.length;
+            else n = 1;
+        }
+    }
+
+    return n;
+};
+
+/**
+ * Get the observation for the given index from the internal
+ * observations object
+ */
+SOS.Offering.prototype.getObservationRecord = function (i) {
+    var _off = this;
+    var record = {};
+
+    if (_off.observationData)
+        if (_off.observationData instanceof Array)
+            record = _off.observationData[i];
+        else record = _off.observationData;
+
+    return record;
+};
+
+/**
+ * Get the observation for the given index from the internal
+ * observations object, as long as it matches the given filter rules
+ */
+SOS.Offering.prototype.getFilteredObservationRecord = function (i, filter) {
+    var _off = this;
+    var record;
+
+    if (_off.observationData) {
+        var r = _off.observationData[i];
+
+        if (SOS.Utils.isValidObject(filter)) {
+            if (SOS.Utils.isValidObject(filter.foiId)) {
+                var foi = _sos.getFeatureOfInterestFromObservationRecord(r);
+
+                if (foi &amp;&amp; foi.attributes.id == filter.foiId) {
+                    record = _sos.SOSObservations.measurements[i];
+                }
+            } else if (SOS.Utils.isValidObject(filter.observedProperty)) {
+                if (r.observedProperty == filter.observedProperty) {
+                    record = _sos.SOSObservations.measurements[i];
+                }
+            }
+        } else {
+            record = _sos.SOSObservations.measurements[i];
+        }
+
+        // Add some convenience properties
+        record = _sos.addPropertiesToObservationRecord(record);
+    }
+
+    return record;
+};
+
+/**
+ * Get results for observed properties of this offering between the
+ * given start and end datetimes
+ */
+SOS.Offering.prototype.getResults = function (start, end, callback) {
+    var _off = this;
+
+    // Optionally the caller can register a callback for the obs request
+    if (arguments.length &gt; 2) {
+        _off.sos.registerUserCallback({ event: SOS.Const.Events.SOS_OFFERING_RESULT_AVAILABLE, callback: callback });
+    }
+
+    var params = {
+        offering: _off.id || _off.identifier,
+        observedProperties: _off.observedProperties
+    };
+
+    _off.sos.obsFormatter.getObservationByScope(params, callback, SOS.Const.Events.SOS_OFFERING_OBSERVATION_AVAILABLE, _off);
+};
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

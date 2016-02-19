@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>FeatureOfInterest - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>FeatureOfInterest Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends SOS.Entity
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l2"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:2</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>Instancia un objeto FeatureOfInterest.</p>
+
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAllowedFOIs">getAllowedFOIs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAvailableFeaturesOfInterest">getAvailableFeaturesOfInterest</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getFeatureOfInterest">getFeatureOfInterest</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getFeatureOfInterestByPoint">getFeatureOfInterestByPoint</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getOnCapAllowedIDFeaturesOfInterest">getOnCapAllowedIDFeaturesOfInterest</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getOnCapAllowedObservedProperty">getOnCapAllowedObservedProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getOnCapAllowedProcedures">getOnCapAllowedProcedures</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getOnCapAllowedRangeSpatialFilter">getOnCapAllowedRangeSpatialFilter</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getProcedures">getProcedures</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property">
+                                <a href="#property_allowedFOIs">allowedFOIs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onCapAllowedFOIs">onCapAllowedFOIs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onCapAllowedIDFeaturesOfInterest">onCapAllowedIDFeaturesOfInterest</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onCapAllowedObservedProperty">onCapAllowedObservedProperty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onCapAllowedProcedures">onCapAllowedProcedures</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_valueReference">valueReference</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_getAllowedFOIs" class="method item">
+    <h3 class="name"><code>getAllowedFOIs</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l243"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:243</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Retorna el valor de la propiedad allowedFOIs.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getAvailableFeaturesOfInterest" class="method item">
+    <h3 class="name"><code>getAvailableFeaturesOfInterest</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l342"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:342</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los featureOfInterest disponibles en el servicio desde el capabalities, creando un FeatureOfInterestRecord para cada uno de ellos, completa la propiedad onCapAllowedFOIs.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getFeatureOfInterest" class="method item">
+    <h3 class="name"><code>getFeatureOfInterest</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[params]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l42"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los featureOfInterest que cumplan con los filtros indicados, si no se indican filtros obtendrá todos los featureOfInterest disponibles.
+Completa la propiedad allowedFOIs. 
+Al finalizar lanza el evento SOS_FEATURE_OF_INTEREST_AVAILABLE.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[params]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { featureOfInterest: [idFoi], observedProperty: [propiedades], procedure: [procedimientos], spatial:{srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }. - Todos son opcionales</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   // Filtro por identificador de FeatureOfInterest
+   var foi = new SOS.entity.FeatureOfInterest({ url: &#39;http://sos_service/service&#39; });
+   foi.getFeatureOfInterest({
+       featureOfInterest: [&#39;http://sos_service/featureOfInterest/1&#39;] // filtro identificador de featuresOfInterest
+   }, function () { // callback una vez finalizada la petición al servicio
+       if (foi.data) {
+           console.log(&#39;Datos de http://sos_service/featureOfInterest/1: OK&#39;);
+       }                    
+   });
+
+   // Filtro espacial
+   foi.getFeatureOfInterest({
+       spatial: {
+           srs: 4326,
+           lowerCorner: [-180, -90],
+           upperCorner: [180, 90]
+       }
+   }, function () {       
+       // El resultado de la petición se almacena en la propiedad [allowedFOIs]
+
+       if (foi.allowedFOIs.length &gt; 0)
+           console.log(&#39;&#39;);
+   });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getFeatureOfInterestByPoint" class="method item">
+    <h3 class="name"><code>getFeatureOfInterestByPoint</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>srs</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>point</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>radius</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[Callback]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l133"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:133</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los featureOfInterest que se encuentren dentro del bbox aplicado.
+Completa la propiedad allowedFOIs. 
+Al finalizar lanza el evento SOS_FEATURE_OF_INTEREST_AVAILABLE.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">srs</code>
+                        <span class="type">Int</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Sistema de referencia espacial - Requerido.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">point</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Array que contiene las coordenadas del punto - Requerido.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">radius</code>
+                        <span class="type">Float</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Distancia al vértice, en unidades del mapa - Requerido.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { featureOfInterest: [idFoi], observedProperty: [propiedades], procedure: [procedimientos] }. </p>
+<ul>
+<li>Opcional</li>
+</ul>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[Callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   // Filtro por identificador de FeatureOfInterest
+   var foi = new SOS.entity.FeatureOfInterest({ url: &#39;http://sos_service/service&#39; });
+   foi.getFeatureOfInterestByPoint(4326, [42.843, -1.5804], 0.05).then(function (data) { 
+       if (data) {
+           data = data || [];
+           console.log(data.length + &#39; elementos encontrados&#39;);
+       }                    
+   });        </code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getOnCapAllowedIDFeaturesOfInterest" class="method item">
+    <h3 class="name"><code>getOnCapAllowedIDFeaturesOfInterest</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l296"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:296</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los identificadores de los featureOfInterest disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedIDFeaturesOfInterest.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getOnCapAllowedObservedProperty" class="method item">
+    <h3 class="name"><code>getOnCapAllowedObservedProperty</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l276"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:276</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita las propiedades observables disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedObservedProperty.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getOnCapAllowedProcedures" class="method item">
+    <h3 class="name"><code>getOnCapAllowedProcedures</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l256"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:256</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los procedimientos disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedProcedures.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getOnCapAllowedRangeSpatialFilter" class="method item">
+    <h3 class="name"><code>getOnCapAllowedRangeSpatialFilter</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l316"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:316</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita los el bbox máximo disponible para aplicar filtro espacial desde el capabalities y completa la propiedad onCapAllowedRangeSpatialFilter.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getProcedures" class="method item">
+    <h3 class="name"><code>getProcedures</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>foiID</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[Callback]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l197"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:197</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Obtiene los procedimientos que estén relacionados con los featuteOfInterest pasados como parámetro.
+La relación se extrae de los offerings del capabilities.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">foiID</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Array con los identificadores de los featureOfInterest.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[Callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   // Filtro por identificador de FeatureOfInterest
+   var foi = new SOS.entity.FeatureOfInterest({ url: &#39;http://sos_service/service&#39; });
+   foi.getProcedures(&#39;http://sos_service/srr/an2&#39;).then(function (data) {
+       data = data || [];
+       console.log(&#39;Procedimientos encontrados: &#39; + data.length);
+   });      </code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_allowedFOIs" class="property item">
+    <h3 class="name"><code>allowedFOIs</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l491"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:491</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene el resultado de la petición GetFeatureOfInterest con los fois resultantes</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> []</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onCapAllowedFOIs" class="property item">
+    <h3 class="name"><code>onCapAllowedFOIs</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l497"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:497</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene los featuresOfInterest de tipo FeatureOfInterestRecord extraídos del capabilities, se completa mediante la llamada a getAvailableFeaturesOfInterest</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> []</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onCapAllowedIDFeaturesOfInterest" class="property item">
+    <h3 class="name"><code>onCapAllowedIDFeaturesOfInterest</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l515"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:515</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene las propiedades observadas aceptados como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedIDFeaturesOfInterest</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> []</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onCapAllowedObservedProperty" class="property item">
+    <h3 class="name"><code>onCapAllowedObservedProperty</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l509"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:509</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene las propiedades observadas aceptadas como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedObservedProperty</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> []</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onCapAllowedProcedures" class="property item">
+    <h3 class="name"><code>onCapAllowedProcedures</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l503"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:503</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene los ids de procedimientos aceptados como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedProcedures</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> []</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_valueReference" class="property item">
+    <h3 class="name"><code>valueReference</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_FeatureOfInterest.js.html#l521"><code>..\..\src\js\SOS\Entity\Entities\FeatureOfInterest.js:521</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene el nombre del atributo que hace referencia a la geometría</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> sams:shape</p>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

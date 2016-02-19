@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\utility\Proxy.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\utility\Proxy.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿
+
+/// &lt;reference path=&quot;Utils.js&quot; /&gt;
+
+var SOS = SOS || {};
+
+SOS.Const.PROXY_HOST = &quot;Proxy/proxy.ashx?&quot;;
+
+(function () {
+    var loc = window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf(&#x27;/&#x27;) + 1);
+    SOS.sosLocation = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+}());
+
+
+SOS.Proxy = {    
+    use: false,
+    url: SOS.sosLocation + SOS.Const.PROXY_HOST,
+
+    /**
+     * Initialise the proxy for communicating to the SOS
+     */
+    init: function (options) {
+        var prx = this;
+        // We can optionally modify the proxy settings here
+        if (SOS.Utils.isValidObject(options)) {
+            for (var p in options) {
+                prx[p] = options[p];
+            }
+        }
+        /* Initialise the proxy, based on the &quot;use&quot; flag */
+        if (prx.use) {
+            prx.enable();
+        } else {
+            prx.disable();
+        }
+    },
+
+    /**
+     * Enable the proxy for communicating to the SOS
+     */
+    enable: function (options) {
+        var prx = this;
+        // We can optionally modify the proxy settings here
+        if (SOS.Utils.isValidObject(options)) {
+            for (var p in options) {
+                prx[p] = options[p];
+            }
+        }
+        if (prx.url) {
+            SOS.ProxyHost = prx.url;
+        }
+
+        return prx.url;
+    },
+
+    /**
+     * Disable the proxy for communicating to the SOS
+     */
+    disable: function () {
+        SOS.ProxyHost = null;
+    }
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

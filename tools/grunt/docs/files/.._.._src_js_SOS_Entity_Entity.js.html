@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\Entity\Entity.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\Entity\Entity.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿var SOS = SOS || {};
+
+SOS.entity = SOS.entity || {};
+
+/**
+ * Instancia del objeto SOS al cual estará conectado el objeto instanciado.
+ * @property sos
+ * @type SOS
+ */
+/**
+ * Hace referencia al tipo de conexión de solicitud/respuesta con el servicio
+ * @property defaultSource
+ * @type SOS.bindingType 
+ * @default SOS.bindingType.XML
+ */
+/**
+ * Contiene la configuración de urls para llamadas GET/POST extraídas del capabilities del servicio
+ * @property postCfg
+ * @type array
+ * @default null
+ */
+/**
+ * Contiene la configuración del capabilities de las peticiones GET/POST para los contenidos acceptados
+ * @property dcp
+ * @type array
+ * @default null
+ */
+/**
+ * Contiene la URL para las peticiones POST para el tipo de conexión
+ * @property postUrl
+ * @type string
+ * @default null
+ */
+SOS.Entity = function (options) {
+    var _ent = this;
+
+    options = options || {};
+
+    if (!(this instanceof SOS.Entity)) throw Error(&#x27;Error &#x27; + _ent.entityName + &#x27; &#x27; + SOS.Const.ErrorText.SOS_VIA_NEW);
+
+    _ent.data = null;
+    _ent.sources = {};
+
+    var _bindSources = function () {
+        if (_ent.sources) {
+            if (!_ent.sources.xml)
+                _ent.sources.xml = _ent.bindSourceXML();
+
+            if (!_ent.sources.json)
+                _ent.sources.json = _ent.bindSourceJSON();
+        }
+    };
+
+    if (!options.sos &amp;&amp; !options.url)
+        throw Error(SOS.Const.ErrorText.SOS_URL_MISSING);
+
+    _ent.sos = options.sos || new SOS({ url: options.url, bindingType: SOS.bindingType.XML, entity: _ent });
+
+    _ent.defaultSource = options.defaultSource || options || &#x27;xml&#x27;;
+    _ent.postCfg = null;
+    
+    _ent.dcp = _ent.dcp || [];    
+    _ent.postUrl = _ent.postUrl || &#x27;&#x27;;
+
+    _bindSources();
+
+    _ent.get = new SOS.method.GET(_ent);
+
+    //si la entidad requiere de la extracción de la url para post del capabilities, nos suscribimos al evento SOS_CAPABILITIES_AVAILABLE
+    if (_ent.capsOperation) {
+        _ent.sos.registerUserCallback({
+            event: SOS.Const.Events.SOS_CAPABILITIES_AVAILABLE, callback: function () {
+                _ent.bindUrlConfig();
+            }
+        });
+    }
+};
+
+SOS.Entity.prototype.bindUrlConfig = function () {
+    var _ent = this;
+
+    var _getUrl = function () {
+        _ent.postCfg = [];
+
+        if (_ent.dcp) {
+            if (_ent.dcp instanceof Array) {
+                for (var i = 0; i &lt; _ent.dcp.length; i++) {
+                    if (_ent.dcp[i].method.toLowerCase() == &#x27;post&#x27;) {
+                        _ent.postCfg.push({
+                            &quot;@href&quot;: _ent.dcp[i].href,
+                            &quot;constraint&quot;: {
+                                &quot;allowedValues&quot;: {
+                                    &quot;value&quot;: _ent.dcp[i].constraints[&#x27;Content-Type&#x27;].allowedValues
+                                }
+                            }
+                        });
+                    }
+                }
+            } else if (_ent.dcp &amp;&amp; _ent.dcp.hTTP) { _ent.postCfg = _ent.dcp.hTTP.post; }
+
+        }
+        if (_ent.postCfg) {
+            var post = _ent.postCfg;
+            if (!(post instanceof Array)) {
+                return post[&#x27;@href&#x27;];
+            }
+            else {
+                for (var i = 0; i &lt; _ent.postCfg.length; i++) {
+                    var url = _ent.postCfg[i][&#x27;@href&#x27;];
+                    for (var format in _ent.postCfg[i].constraint.allowedValues) {
+                        if (_ent.postCfg[i].constraint.allowedValues[format] instanceof Array) {
+                            for (var j = 0; j &lt; _ent.postCfg[i].constraint.allowedValues[format].length; j++) {
+                                if (_ent.postCfg[i].constraint.allowedValues[format][j] == _ent.sos.config.post.responseFormatType)
+                                    return url;
+                            }
+                        }
+                        if (_ent.postCfg[i].constraint.allowedValues[format] == _ent.sos.config.post.responseFormatType)
+                            return url;
+                    }
+                }
+            }
+        }
+    };
+
+    var ope = _ent.sos.capsFormatter.getOperation(_ent.capsOperation);
+    if (ope) {
+        _ent.dcp = ope.dCP || ope.dcp;
+        _ent.postUrl = _getUrl();
+    }
+};
+
+SOS.Entity.prototype.getPostUrl = function () {
+    var _ent = this;
+    
+    if (_ent.postUrl)
+        return new SOS.Promise(function (resolve, reject) {
+            resolve(_ent.postUrl);
+        });        
+    else {
+        return new SOS.Promise(function (resolve, reject) {
+            _ent.sos.getCapabilities().then(function (caps) {
+
+                if (_ent.sos.capsFormatter.data == null)
+                    _ent.sos.capsFormatter.data = caps;
+
+                _ent.bindUrlConfig();
+
+                resolve(_ent.postUrl);
+            });
+        });        
+    }
+};
+
+SOS.Entity.prototype.getContentType = function () {
+    var _ent = this;
+    if (_ent.sources &amp;&amp; _ent.sources[_ent.defaultSource]) {
+        switch (_ent.defaultSource) {
+            case &#x27;json&#x27;:
+                return &#x27;application/json&#x27;;
+            case &#x27;xml&#x27;:
+                return &#x27;application/xml&#x27;;
+        }
+    }
+};
+
+SOS.Entity.prototype.bindSourceXML = function () {
+    var _ent = this;
+    throw new Error(&#x27;bindSourceXML not implemented.&#x27;);
+};
+
+SOS.Entity.prototype.bindSourceJSON = function () {
+    var _ent = this;
+    throw new Error(&#x27;bindSourceJSON not implemented.&#x27;);
+};
+
+
+
+
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

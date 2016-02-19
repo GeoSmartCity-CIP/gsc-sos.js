@@ -1,0 +1,1811 @@
+{
+    "project": {
+        "name": "gsc-sos.js",
+        "description": "",
+        "version": "1.0.0",
+        "url": ""
+    },
+    "files": {
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "modules": {},
+            "classes": {
+                "Capabilities": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "modules": {},
+            "classes": {
+                "DescribeSensor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "modules": {},
+            "classes": {
+                "FeatureOfInterest": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "modules": {},
+            "classes": {
+                "FeatureOfInterestRecord": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "modules": {},
+            "classes": {
+                "Observation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationById.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationById.js",
+            "modules": {},
+            "classes": {
+                "ObservationById": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "modules": {},
+            "classes": {
+                "ObservationRecord": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Entity.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\Entity\\Offering.js": {
+            "name": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "modules": {},
+            "classes": {
+                "Offering": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\utility\\Proxy.js": {
+            "name": "..\\..\\src\\js\\SOS\\utility\\Proxy.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\utility\\Util.js": {
+            "name": "..\\..\\src\\js\\SOS\\utility\\Util.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "..\\..\\src\\js\\SOS\\SOS.js": {
+            "name": "..\\..\\src\\js\\SOS\\SOS.js",
+            "modules": {},
+            "classes": {
+                "SOS": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Capabilities": {
+            "name": "Capabilities",
+            "shortname": "Capabilities",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 2,
+            "description": "Instancia un objeto Capabilities.\nEn la instanciación de la clase se lanza la petición getCapabilities al servicio indicado en el objeto de configuración.",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "{",
+                    "description": "url: urlServicio } - Indica la url del servicio al cual se conectará.",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            }
+        },
+        "DescribeSensor": {
+            "name": "DescribeSensor",
+            "shortname": "DescribeSensor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 2,
+            "description": "Instancia un objeto DescribeSensor.",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "{",
+                    "description": "url: urlServicio, responseFormatType: 'tipoFormato' } \n- Requerido: URL del servicio al cual se conectará \n- Opcional: [responseFormatType] tipo formato de respuesta por defecto.",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            },
+            "example": [
+                "\n       var describe = new SOS.entity.DescribeSensor({ url: 'http://sos_service/service'});         "
+            ]
+        },
+        "FeatureOfInterest": {
+            "name": "FeatureOfInterest",
+            "shortname": "FeatureOfInterest",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 2,
+            "description": "Instancia un objeto FeatureOfInterest.",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "{",
+                    "description": "url: urlServicio, valueReference: the_geom } \n- URL del servicio al cual se conectará\n- Opcional: valueReference: Nombre del atributo que hace referencia a la geometría, por defecto sams:shape",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            },
+            "example": [
+                "\n       var foi = new SOS.entity.FeatureOfInterest({ url: 'http://sos_service/service' });        "
+            ]
+        },
+        "FeatureOfInterestRecord": {
+            "name": "FeatureOfInterestRecord",
+            "shortname": "FeatureOfInterestRecord",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 1,
+            "description": "Instancia un objeto FeatureOfInterestRecord.",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "Objeto",
+                    "description": "de configuración {id, idFOI, type, name, sampledFeature, geom}",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Observation": {
+            "name": "Observation",
+            "shortname": "Observation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 2,
+            "description": "Instancia un objeto Observation.",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "{",
+                    "description": "url: urlServicio, valueReference: the_geom } \n- Requerido: URL del servicio al cual se conectará\n- Opcional: ValueReference: Nombre del atributo que hace referencia a la geometría, por defecto om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            }
+        },
+        "ObservationById": {
+            "name": "ObservationById",
+            "shortname": "ObservationById",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationById.js",
+            "line": 2,
+            "description": "Instancia un objeto ObservationById\nvar obsId = SOS.entity.ObservationById({ url: 'urlServicioSOS' });",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "{",
+                    "description": "url: urlServicio } - URL del servicio al cual se conectará.",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            }
+        },
+        "ObservationRecord": {
+            "name": "ObservationRecord",
+            "shortname": "ObservationRecord",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 1,
+            "description": "Instancia un objeto ObservationRecord",
+            "extends": "SOS.Entity",
+            "params": [
+                {
+                    "name": "Objeto",
+                    "description": "de configuración {id, featureOfInterest[{ id, name }], observedProperty[], time, procedure[], type, result{ type, uom, value }}",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Offering": {
+            "name": "Offering",
+            "shortname": "Offering",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 1,
+            "description": "Instancia un objeto Offering.",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Objeto de configuración",
+                    "type": "Object",
+                    "optional": true
+                }
+            ]
+        },
+        "SOS": {
+            "name": "SOS",
+            "shortname": "SOS",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 14,
+            "description": "Instancia un objeto SOS.\nEs el objeto principal de la API.\nAl instanciar la clase, automáticamente se lanza una petición getCapabilities al servcio indicado en el objeto de configuración.",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "{ url: urlServicio } \n- Requerido: URL del servicio al cual se conectará",
+                    "type": "Object"
+                }
+            ],
+            "throws": {
+                "description": "Lanza error cuando no se indica URL al servicio o una instancia de SOS.",
+                "type": "Error"
+            }
+        }
+    },
+    "classitems": [
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 22,
+            "description": "Solicita el capabilities del servicio indicado.\nAl finalizar lanza el evento SOS_CAPABILITIES_AVAILABLE.",
+            "itemtype": "method",
+            "name": "getCapabilities",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Objeto de opciones de configuración { url: urlServicio }.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "throws": {
+                "description": "Lanza error cuando no se indica url del servicio en las opciones de configuración.",
+                "type": "Error"
+            },
+            "example": [
+                "\n       var caps = new SOS.entity.Capabilities({ url: 'http://sos_service/service'});\n       caps.getCapabilities().then(function(data) {\n           if(data) {\n               console.log('Capabilities OK');  \n           }\n       });   "
+            ],
+            "class": "Capabilities"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 112,
+            "description": "Solicita la información de una operación extraída del capabilities.",
+            "itemtype": "method",
+            "name": "getOperation",
+            "params": [
+                {
+                    "name": "Operación,",
+                    "description": "nombre de la operación a validar.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "example": [
+                "\n       var caps = new SOS.entity.Capabilities({ url: 'http://sos_service/service'});\n       caps.getCapabilities().then(function(data) {\n           if(data) {\n               var getFOIData = caps.getOperation('getFeatureOfInterest');\n               if(getFOIData) {\n                   console.log('Datos de la operación getFeatureOfInterest OK');\n               }\n           }\n       });   "
+            ],
+            "class": "Capabilities"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 151,
+            "description": "Solicita los parámetros asociados a una operación extraídos del capabilities.",
+            "itemtype": "method",
+            "name": "getOperationParameters",
+            "params": [
+                {
+                    "name": "Operación,",
+                    "description": "nombre de la operación a validar.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "example": [
+                "\n       var caps = new SOS.entity.Capabilities({ url: 'http://sos_service/service'});\n       caps.getCapabilities().then(function(data) {\n           if(data) {\n               var getFOIParams = caps.getOperationParameters('getFeatureOfInterest');\n               if(getFOIParams) {\n                   console.log('Parámetros de la operación getFeatureOfInterest OK');\n               }\n           }\n       });   "
+            ],
+            "class": "Capabilities"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 175,
+            "description": "Solicita los valores disponibles para los parámetros asociados a una operación extraídos del capabilities.",
+            "itemtype": "method",
+            "name": "getOperationParameterValues",
+            "params": [
+                {
+                    "name": "Operación,",
+                    "description": "nombre de la operación a validar.",
+                    "type": "String"
+                },
+                {
+                    "name": "Parámetros,",
+                    "description": "nombre del parámetro del cual obtener los valores disponibles.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "example": [
+                "\n       var caps = new SOS.entity.Capabilities({ url: 'http://sos_service/service'});\n       caps.getCapabilities().then(function(data) {\n           if(data) {\n               var getFOIParams = caps.getOperationParameters('getFeatureOfInterest');\n               getFOIParams = getFOIParams || [];\n\n               if(getFOIParams.length > 0) {\n                   console.log('Parámetros de la operación getFeatureOfInterest OK');\n                   var getFOIParamValues = caps.getOperationParameters('getFeatureOfInterest', getFOIParams[0]);\n\n                   getFOIParamValues = getFOIParamValues || getFOIParamValues;\n                   if(getFOIParamValues.length > 0)\n                       console.log('Valores disponibles para el parámetro ' + getFOIParams[0] + ': OK');\n               }\n           }\n       });   "
+            ],
+            "class": "Capabilities"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Capabilities.js",
+            "line": 225,
+            "description": "Solicita las operaciones disponibles extraídas del capabilities.",
+            "itemtype": "method",
+            "name": "getOperationMetadata",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "Capabilities"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 33,
+            "description": "Solicita la descripción de un procedimiento.\nAl finalizar lanza el evento SOS_SENSOR_DESCRIPTION_AVAILABLE.",
+            "itemtype": "method",
+            "name": "getDescribeSensor",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Objeto de opciones de filtrado y configuración { idProcedure: 'idProcedimientoAFiltrar', procedureDescriptionFormat: 'formatoRespuestaDeseado' }.\n- Opcional: procedureDescriptionFormat, por defecto: \"http://www.opengis.net/sensorml/2.0\"",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "\n       var describe = new SOS.entity.DescribeSensor({ url: 'http://sos_service/service' });\n       describe.getDescribeSensor({ idProcedure: 'idProc1' }).then(function(data) {\n           if(data) {\n               console.log('getDescribeSensor OK');  \n           }\n       });   "
+            ],
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 107,
+            "description": "Solicita los formatos de respuesta de descripción de procedimiento disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedProceduresDescFormat.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedProceduresDescFormat",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "\n       var describe = new SOS.entity.DescribeSensor({ url: 'http://sos_service/service' });\n       describe.getOnCapAllowedProceduresDescFormat().then(function(descriptionFormats) {\n           if(descriptionFormats) {\n               console.log('Formatos de descripción disponibles OK');  \n           }\n       });   "
+            ],
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 134,
+            "description": "Solicita los ids de los procedimientos de los cuales se puede solicitar información, completa la propiedad onCapAllowedProcedures.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedProcedures",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "\n       var describe = new SOS.entity.DescribeSensor({ url: 'http://sos_service/service' });\n       describe.getOnCapAllowedProcedures().then(function(availableProcedures) {\n           if(availableProcedures) {\n               console.log('Identificadores de procedimientos disponibles OK');  \n           }\n       });   "
+            ],
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 210,
+            "description": "Contiene el tipo de formato para la respuesta de la solicitud DescribeSensor",
+            "itemtype": "property",
+            "name": "responseFormatType",
+            "type": "string",
+            "default": "http://www.opengis.net/sensorml/2.0",
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 216,
+            "description": "Contiene los ids de procedimientos aceptados como parámetro en la solicitud DescribeSensor extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedProcedures",
+            "itemtype": "property",
+            "name": "onCapAllowedProcedures",
+            "type": "array",
+            "default": "null",
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\DescribeSensor.js",
+            "line": 222,
+            "description": "Contiene los formatos de respuesta aceptados como parámetro en la solicitud DescribeSensor extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedProceduresDescFormat",
+            "itemtype": "property",
+            "name": "onCapAllowedProceduresDescFormat",
+            "type": "array",
+            "default": "null",
+            "class": "DescribeSensor"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 42,
+            "description": "Solicita los featureOfInterest que cumplan con los filtros indicados, si no se indican filtros obtendrá todos los featureOfInterest disponibles.\nCompleta la propiedad allowedFOIs. \nAl finalizar lanza el evento SOS_FEATURE_OF_INTEREST_AVAILABLE.",
+            "itemtype": "method",
+            "name": "getFeatureOfInterest",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { featureOfInterest: [idFoi], observedProperty: [propiedades], procedure: [procedimientos], spatial:{srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }. - Todos son opcionales",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "       \n\n       // Filtro por identificador de FeatureOfInterest\n       var foi = new SOS.entity.FeatureOfInterest({ url: 'http://sos_service/service' });\n       foi.getFeatureOfInterest({\n           featureOfInterest: ['http://sos_service/featureOfInterest/1'] // filtro identificador de featuresOfInterest\n       }, function () { // callback una vez finalizada la petición al servicio\n           if (foi.data) {\n               console.log('Datos de http://sos_service/featureOfInterest/1: OK');\n           }                    \n       });\n\n       // Filtro espacial\n       foi.getFeatureOfInterest({\n           spatial: {\n               srs: 4326,\n               lowerCorner: [-180, -90],\n               upperCorner: [180, 90]\n           }\n       }, function () {       \n           // El resultado de la petición se almacena en la propiedad [allowedFOIs]\n\n           if (foi.allowedFOIs.length > 0)\n               console.log('');\n       });"
+            ],
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 133,
+            "description": "Solicita los featureOfInterest que se encuentren dentro del bbox aplicado.\nCompleta la propiedad allowedFOIs. \nAl finalizar lanza el evento SOS_FEATURE_OF_INTEREST_AVAILABLE.",
+            "itemtype": "method",
+            "name": "getFeatureOfInterestByPoint",
+            "async": 1,
+            "params": [
+                {
+                    "name": "srs",
+                    "description": "Sistema de referencia espacial - Requerido.",
+                    "type": "Int"
+                },
+                {
+                    "name": "point",
+                    "description": "Array que contiene las coordenadas del punto - Requerido.",
+                    "type": "Array"
+                },
+                {
+                    "name": "radius",
+                    "description": "Distancia al vértice, en unidades del mapa - Requerido.",
+                    "type": "Float"
+                },
+                {
+                    "name": "options",
+                    "description": "Objeto de opciones de filtrado { featureOfInterest: [idFoi], observedProperty: [propiedades], procedure: [procedimientos] }. \n- Opcional",
+                    "type": "Object"
+                },
+                {
+                    "name": "Callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "       \n\n       // Filtro por identificador de FeatureOfInterest\n       var foi = new SOS.entity.FeatureOfInterest({ url: 'http://sos_service/service' });\n       foi.getFeatureOfInterestByPoint(4326, [42.843, -1.5804], 0.05).then(function (data) { \n           if (data) {\n               data = data || [];\n               console.log(data.length + ' elementos encontrados');\n           }                    \n       });        "
+            ],
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 197,
+            "description": "Obtiene los procedimientos que estén relacionados con los featuteOfInterest pasados como parámetro.\nLa relación se extrae de los offerings del capabilities.",
+            "itemtype": "method",
+            "name": "getProcedures",
+            "async": 1,
+            "params": [
+                {
+                    "name": "foiID",
+                    "description": "Array con los identificadores de los featureOfInterest.",
+                    "type": "Array"
+                },
+                {
+                    "name": "Callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "       \n\n       // Filtro por identificador de FeatureOfInterest\n       var foi = new SOS.entity.FeatureOfInterest({ url: 'http://sos_service/service' });\n       foi.getProcedures('http://sos_service/srr/an2').then(function (data) {\n           data = data || [];\n           console.log('Procedimientos encontrados: ' + data.length);\n       });      "
+            ],
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 243,
+            "description": "Retorna el valor de la propiedad allowedFOIs.",
+            "itemtype": "method",
+            "name": "getAllowedFOIs",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 256,
+            "description": "Solicita los procedimientos disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedProcedures.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedProcedures",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 276,
+            "description": "Solicita las propiedades observables disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedObservedProperty.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedObservedProperty",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 296,
+            "description": "Solicita los identificadores de los featureOfInterest disponibles en el servicio desde el capabalities y completa la propiedad onCapAllowedIDFeaturesOfInterest.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedIDFeaturesOfInterest",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 316,
+            "description": "Solicita los el bbox máximo disponible para aplicar filtro espacial desde el capabalities y completa la propiedad onCapAllowedRangeSpatialFilter.",
+            "itemtype": "method",
+            "name": "getOnCapAllowedRangeSpatialFilter",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 342,
+            "description": "Solicita los featureOfInterest disponibles en el servicio desde el capabalities, creando un FeatureOfInterestRecord para cada uno de ellos, completa la propiedad onCapAllowedFOIs.",
+            "itemtype": "method",
+            "name": "getAvailableFeaturesOfInterest",
+            "async": 1,
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 491,
+            "description": "Contiene el resultado de la petición GetFeatureOfInterest con los fois resultantes",
+            "itemtype": "property",
+            "name": "allowedFOIs",
+            "type": "array",
+            "default": "[]",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 497,
+            "description": "Contiene los featuresOfInterest de tipo FeatureOfInterestRecord extraídos del capabilities, se completa mediante la llamada a getAvailableFeaturesOfInterest",
+            "itemtype": "property",
+            "name": "onCapAllowedFOIs",
+            "type": "array",
+            "default": "[]",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 503,
+            "description": "Contiene los ids de procedimientos aceptados como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedProcedures",
+            "itemtype": "property",
+            "name": "onCapAllowedProcedures",
+            "type": "array",
+            "default": "[]",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 509,
+            "description": "Contiene las propiedades observadas aceptadas como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedObservedProperty",
+            "itemtype": "property",
+            "name": "onCapAllowedObservedProperty",
+            "type": "array",
+            "default": "[]",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 515,
+            "description": "Contiene las propiedades observadas aceptados como parámetro en la solicitud GetFeatureOfInterest extraídos del capabilities, se completa mediante la llamada a getOnCapAllowedIDFeaturesOfInterest",
+            "itemtype": "property",
+            "name": "onCapAllowedIDFeaturesOfInterest",
+            "type": "array",
+            "default": "[]",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterest.js",
+            "line": 521,
+            "description": "Contiene el nombre del atributo que hace referencia a la geometría",
+            "itemtype": "property",
+            "name": "valueReference",
+            "type": "string",
+            "default": "sams:shape",
+            "class": "FeatureOfInterest"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 49,
+            "description": "Contiene el identificador gml",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 54,
+            "description": "Contiene el identificador featureOfInterest",
+            "itemtype": "property",
+            "name": "idFOI",
+            "type": "string",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 59,
+            "description": "Contiene el tipo SF_SamplingPoint | SF_SampledPoint",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 64,
+            "description": "Contiene el nombre",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 69,
+            "description": "Caracterítica medida",
+            "itemtype": "property",
+            "name": "sampledFeature",
+            "type": "string",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\FeatureOfInterestRecord.js",
+            "line": 74,
+            "description": "Geometría del featureOfInterest",
+            "itemtype": "property",
+            "name": "geom",
+            "type": "{object}  Contiene srs, type (Point), coords[]",
+            "class": "FeatureOfInterestRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 87,
+            "description": "Solicita las observaciones que cumplan con los filtros indicados, si no se indican filtros obtendrá todos las observaciones disponibles. \n\nAl finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE",
+            "itemtype": "method",
+            "name": "getObservation",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], \nspatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] }, \ntemporal: { operator: 'After', on: 'resultTime' | 'phenomenonTime', operand: 'TimeInstant', timeEvent: new Date().getDate() - 1 } }. - Todos son opcionales",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "event",
+                    "description": "[Evento] personalizado que se lanzará al finalizar la petición",
+                    "type": "String"
+                },
+                {
+                    "name": "off",
+                    "description": "Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes.",
+                    "type": "SOS:entity.Offering",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "       \n       var obs = new SOS.entity.Observation({ url: 'http://sos_service/service' });        \n       obs.getObservation({ procedure: 'http://sos_service/srr/an1/qa01' }).then(function (obs) {\n           obs = obs || [];            \n           console.log('Observaciones por procedimiento: ' + 'http://sos_service/srr/an1/qa01');\n           console.log('Número de observaciones: ' + obs.length);            \n       });        "
+            ],
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 176,
+            "description": "Solicita la primera observación disponible que cumpla con los filtros indicados. \n\nAl finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE",
+            "itemtype": "method",
+            "name": "getObservationFirst",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], \nspatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "off",
+                    "description": "Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional.",
+                    "type": "SOS:entity.Offering",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 202,
+            "description": "Solicita la última observación disponible que cumpla con los filtros indicados. \nCompleta la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.  \nAl finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE",
+            "itemtype": "method",
+            "name": "getObservationLatest",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], \nspatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "off",
+                    "description": "Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional.",
+                    "type": "SOS:entity.Offering",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 228,
+            "description": "Solicita las observaciones disponibles que cumpla con los filtros indicados entre fecha desde y fecha hasta. \nCompleta la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.  \nAl finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE",
+            "itemtype": "method",
+            "name": "getObservationFromTo",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], \nspatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición.",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "off",
+                    "description": "Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes.",
+                    "type": "SOS:entity.Offering",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "\n       var obs = new SOS.entity.Observation({ url: 'http://sos_service/service' });\n       obs.getObservationFromTo({\n               featureOfInterest: \"http://sos_service/olk/ad1\", \n               procedure: \"http://sos_service/olk/ad1/cl01\", \n               observedproperty: \"http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#Cl2\", \n               temporal: {\n                   start: new Date(2015, 6, 6, 10, 1, 0), \n                   end: new Date(2015, 6, 6, 10, 5, 0)\n               }\n           }, function (data) {\n               data = data || [];\n               console.log(data.length + ' elementos encontrados');\n           });"
+            ],
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 468,
+            "description": "Contiene el nombre del atributo que hace referencia a la geometría",
+            "itemtype": "property",
+            "name": "valueReference",
+            "type": "string",
+            "default": "om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape",
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 474,
+            "description": "Contiene los filtros temporales y espaciales disponibles extraído del capabilities",
+            "itemtype": "property",
+            "name": "filters",
+            "type": "{object}",
+            "default": "{}",
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\Observation.js",
+            "line": 480,
+            "description": "Ordenar las observaciones resultantes por fecha y hora",
+            "itemtype": "property",
+            "name": "sortByDateTime",
+            "type": "{boolean}",
+            "default": "{true}",
+            "class": "Observation"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationById.js",
+            "line": 23,
+            "description": "Solicita las observaciones que tengan como identificador los pasados como filtro. \nCompleta la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.  \nAl finalizar lanza el evento SOS_OBSERVATION_BY_ID_AVAILABLE",
+            "itemtype": "method",
+            "name": "getObservationById",
+            "async": 1,
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Objeto de opciones de filtrado { observationId: [idsObs] }",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Función que se ejecutará al finalizar la petición - Opcional.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "ObservationById"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 126,
+            "description": "Contiene el identificador del registro",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 131,
+            "description": "Contiene los posibles featuresOfInterest relacionados con la observación",
+            "itemtype": "property",
+            "name": "featureOfInterest",
+            "type": "array - {object} id, name",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 136,
+            "description": "Contiene los las propiedades observadas de la observación",
+            "itemtype": "property",
+            "name": "observedProperty",
+            "type": "array",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 141,
+            "description": "Contiene la fecha de la medición | resultado cálculo de la observación",
+            "itemtype": "property",
+            "name": "time",
+            "type": "date | [date, date]",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 146,
+            "description": "Contiene el procedimiento con el cual se ha realizado la medición | resultado cálculo",
+            "itemtype": "property",
+            "name": "procedure",
+            "type": "[]",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 151,
+            "description": "Contiene el tipo de formato de la observación",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entities\\ObservationRecord.js",
+            "line": 156,
+            "description": "Contiene el resultado con la unidad de medida y el valor { type, uom, value }",
+            "itemtype": "property",
+            "name": "result",
+            "type": "{object}",
+            "class": "ObservationRecord"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "line": 5,
+            "description": "Instancia del objeto SOS al cual estará conectado el objeto instanciado.",
+            "itemtype": "property",
+            "name": "sos",
+            "type": "SOS",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "line": 10,
+            "description": "Hace referencia al tipo de conexión de solicitud/respuesta con el servicio",
+            "itemtype": "property",
+            "name": "defaultSource",
+            "type": "SOS.bindingType",
+            "default": "SOS.bindingType.XML",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "line": 16,
+            "description": "Contiene la configuración de urls para llamadas GET/POST extraídas del capabilities del servicio",
+            "itemtype": "property",
+            "name": "postCfg",
+            "type": "array",
+            "default": "null",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "line": 22,
+            "description": "Contiene la configuración del capabilities de las peticiones GET/POST para los contenidos acceptados",
+            "itemtype": "property",
+            "name": "dcp",
+            "type": "array",
+            "default": "null",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Entity.js",
+            "line": 28,
+            "description": "Contiene la URL para las peticiones POST para el tipo de conexión",
+            "itemtype": "property",
+            "name": "postUrl",
+            "type": "string",
+            "default": "null",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 16,
+            "description": "Contiene las observaciones resultantes de la última petición GetObservation asociadas a un offering",
+            "itemtype": "property",
+            "name": "observationData",
+            "type": "object",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 22,
+            "description": "Instancia del objeto SOS al cual estará conectado el objeto instanciado.",
+            "itemtype": "property",
+            "name": "sos",
+            "type": "SOS",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 28,
+            "description": "Indentificador del offering.",
+            "itemtype": "property",
+            "name": "identifier",
+            "type": "string",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 34,
+            "description": "Nombre del offering.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 40,
+            "description": "FeatureOfInterest relacionados con el offering.",
+            "itemtype": "property",
+            "name": "featureOfInterestIds",
+            "type": "array",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 46,
+            "description": "Tipos de featureOfInterest relacionados con el offering.",
+            "itemtype": "property",
+            "name": "featureOfInterestType",
+            "type": "array",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 52,
+            "description": "Propiedades observadas por el offering.",
+            "itemtype": "property",
+            "name": "observedProperties",
+            "type": "array",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 58,
+            "description": "Área observada por el offering.",
+            "itemtype": "property",
+            "name": "observedArea",
+            "type": "object crs, lowerLeft, upperRight",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 64,
+            "description": "Constructor for a SOS.Offering object",
+            "is_constructor": 1,
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 100,
+            "description": "Destructor for a SOS.Offering object",
+            "destructor": "",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 108,
+            "description": "Obtiene los identificadores de los featuresOfInterest relacionados.",
+            "itemtype": "method",
+            "name": "getFeatureOfInterestIds",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 119,
+            "description": "Obtiene los identificadores de los procedimientos.",
+            "itemtype": "method",
+            "name": "getProcedureIds",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 130,
+            "description": "Obtiene los identificadores de las propiedades.",
+            "itemtype": "method",
+            "name": "getObservedPropertyIds",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 141,
+            "description": "Obtiene los nombres de las propiedades.",
+            "itemtype": "method",
+            "name": "getObservedPropertyNames",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 152,
+            "description": "Filtra las propiedades de un offering por las indicadas en la lista, \neste filtro de propiedades se aplicará al solicitar observaciones del offering.",
+            "itemtype": "method",
+            "name": "filterObservedProperties",
+            "params": [
+                {
+                    "name": "lista",
+                    "description": "de propiedades",
+                    "type": "Array"
+                }
+            ],
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 174,
+            "description": "Elimina el posible filtro de propiedades observadas aplicado.",
+            "itemtype": "method",
+            "name": "unfilterObservedProperties",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 187,
+            "description": "Solicita la última observación disponible para el offering, aplica el filtro de propiedades establecido mediante el método [filterObservedProperties].",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "itemtype": "method",
+            "name": "getLatestObservations",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 211,
+            "description": "Solicita las observaciones disponibles para el offering con filtro temporal de fecha desde - fechahasta.",
+            "params": [
+                {
+                    "name": "start",
+                    "description": "",
+                    "type": "Datetime"
+                },
+                {
+                    "name": "end",
+                    "description": "",
+                    "type": "Datetime"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "itemtype": "method",
+            "name": "getLatestObservations",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 238,
+            "description": "Get a count of the number of records contained in the internal\nobservations object",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 257,
+            "description": "Get the observation for the given index from the internal\nobservations object",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 273,
+            "description": "Get the observation for the given index from the internal\nobservations object, as long as it matches the given filter rules",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\Entity\\Offering.js",
+            "line": 307,
+            "description": "Get results for observed properties of this offering between the\ngiven start and end datetimes",
+            "class": "Offering"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\utility\\Proxy.js",
+            "line": 20,
+            "description": "Initialise the proxy for communicating to the SOS",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\utility\\Proxy.js",
+            "line": 39,
+            "description": "Enable the proxy for communicating to the SOS",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\utility\\Proxy.js",
+            "line": 57,
+            "description": "Disable the proxy for communicating to the SOS",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\utility\\Util.js",
+            "line": 723,
+            "description": "IE doesn't include the toString property when iterating over an object's\nproperties with the for(property in object) syntax.  Explicitly check if\nthe source has its own toString property.",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 54,
+            "description": "URL del servicio del cual obtendrá datos",
+            "itemtype": "property",
+            "name": "url",
+            "type": "string",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 60,
+            "description": "Promesa de la solicitud en curso del capabilities del servicio indicado",
+            "itemtype": "property",
+            "name": "capabilitiesPromise",
+            "type": "SOS.Promise",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 66,
+            "description": "Manejador de eventos",
+            "itemtype": "property",
+            "name": "events",
+            "type": "SOS.Events",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 72,
+            "description": "Instancia de la entidad Capabilities asociada al servicio",
+            "itemtype": "property",
+            "name": "capsFormatter",
+            "type": "SOS.entity.Capabilities",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 78,
+            "description": "Instancia de la entidad Observation asociada al servicio",
+            "itemtype": "property",
+            "name": "obsFormatter",
+            "type": "SOS.entity.Observation",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 84,
+            "description": "Instancia de la entidad FeatureOfInterest asociada al servicio",
+            "itemtype": "property",
+            "name": "foiFormatter",
+            "type": "SOS.entity.FeatureOfInterest",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 90,
+            "description": "Instancia de la entidad DescribeSensor asociada al servicio",
+            "itemtype": "property",
+            "name": "sensorDescFormatter",
+            "type": "SOS.entity.DescribeSensor",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 225,
+            "description": "Copy mandatory properties from 'this' to the given object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 239,
+            "description": "Registrar la función suministrada como un controlador de eventos.",
+            "itemtype": "method",
+            "name": "registerUserCallback",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "{ event: evento, scope: this, callback: miFuncion }",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n       sos.registerUserCallback({\n               event: SOS.Const.Events.SOS_SENSOR_DESCRIPTION_AVAILABLE,\n               scope: this,\n               callback: function () {\n                   console.log('Evento SOS_SENSOR_DESCRIPTION_AVAILABLE: ');                    \n                   if (sos.sensorDescFormatter.data) {\n                       console.log('Descripción del sensor disponible');                        \n                   }\n               }\n       });"
+            ],
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 269,
+            "description": "Anula el registro de un controlador de eventos previamente asignada.",
+            "itemtype": "method",
+            "name": "unregisterUserCallback",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "{ event: evento, scope: this, callback: miFuncion }",
+                    "type": "Object"
+                }
+            ],
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 288,
+            "description": "Solicita el capabilities del servicio",
+            "itemtype": "method",
+            "name": "getCapabilities",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "{ callback: miFuncion }",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "    \n       var sos = new SOS({ url: 'http://sos_service/service', bindingType: SOS.bindingType.XML });        \n       sos.getCapabilities().then(function (data) {            \n           console.log('Capabilities OK');\n       });"
+            ],
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 315,
+            "description": "Solicita los offerings disponibles en el capabilities",
+            "itemtype": "method",
+            "name": "getCapabilitiesOfferings",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "{ callback: miFuncion }",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "example": [
+                "    \n       var sos = new SOS({ url: 'http://sos_service/service', bindingType: SOS.bindingType.XML });        \n       sos.getCapabilitiesOfferings().then(function (data) {            \n           console.log('Offerings OK');\n       });"
+            ],
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 406,
+            "description": "Validate the internal capabilities object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 415,
+            "description": "Set the config.observation.responseFormat member to an available\nformat of the given type, parsed from the capabilities object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 645,
+            "description": "Obtiene los identificadores de los offerings disponibles",
+            "itemtype": "method",
+            "name": "getOfferingIds",
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 678,
+            "description": "Obtiene los nombres de los offerings disponibles",
+            "itemtype": "method",
+            "name": "getOfferingIds",
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 699,
+            "description": "Obtiene un offering indicando como filtro el identificador del mismo",
+            "itemtype": "method",
+            "name": "getOffering",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "offering",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 728,
+            "description": "Obtiene un offering indicando como filtro el nombre del mismo",
+            "itemtype": "method",
+            "name": "getOffering",
+            "params": [
+                {
+                    "name": "nombre",
+                    "description": "offering",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 760,
+            "description": "Obtiene lista de offerings que tengan como procedimiento el indicando como filtro",
+            "itemtype": "method",
+            "name": "getOfferingsForProcedureId",
+            "params": [
+                {
+                    "name": "procedureId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 808,
+            "description": "Obtiene lista de offerings que tengan relación con el featureOfInterest indicando como filtro",
+            "itemtype": "method",
+            "name": "getOfferingsForFeatureOfInterestId",
+            "params": [
+                {
+                    "name": "foiId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Promesa",
+                "type": "SOS.Promise"
+            },
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 848,
+            "description": "Get the latest observations for a given FOI",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 864,
+            "description": "Get the latest observations for a given SOS.Offering object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 881,
+            "description": "Get requested observations for a given SOS.Offering object\nbetween given start and end datetimes",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 899,
+            "description": "Validate the internal observations object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 908,
+            "description": "Get a count of the number of records contained in the internal\nobservations object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 925,
+            "description": "Get the observation for the given index from the internal\nobservations object",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 943,
+            "description": "Get the observation for the given index from the internal\nobservations object, as long as it matches the given filter rules",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 977,
+            "description": "Add some standard properties to the given observation record",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 990,
+            "description": "Ascertain that the given observation record has FOI properties",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 1002,
+            "description": "Get the FOI object from the given observation record",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 1011,
+            "description": "Get details for the given FOI",
+            "class": "SOS"
+        },
+        {
+            "file": "..\\..\\src\\js\\SOS\\SOS.js",
+            "line": 1020,
+            "description": "Get the description for the given procedure",
+            "class": "SOS"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: destructor",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:100"
+        },
+        {
+            "message": "Missing item type\nConstructor for a SOS.Offering object",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:64"
+        },
+        {
+            "message": "Missing item type\nDestructor for a SOS.Offering object",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:100"
+        },
+        {
+            "message": "Missing item type\nGet a count of the number of records contained in the internal\nobservations object",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:238"
+        },
+        {
+            "message": "Missing item type\nGet the observation for the given index from the internal\nobservations object",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:257"
+        },
+        {
+            "message": "Missing item type\nGet the observation for the given index from the internal\nobservations object, as long as it matches the given filter rules",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:273"
+        },
+        {
+            "message": "Missing item type\nGet results for observed properties of this offering between the\ngiven start and end datetimes",
+            "line": " ..\\..\\src\\js\\SOS\\Entity\\Offering.js:307"
+        },
+        {
+            "message": "Missing item type\nInitialise the proxy for communicating to the SOS",
+            "line": " ..\\..\\src\\js\\SOS\\utility\\Proxy.js:20"
+        },
+        {
+            "message": "Missing item type\nEnable the proxy for communicating to the SOS",
+            "line": " ..\\..\\src\\js\\SOS\\utility\\Proxy.js:39"
+        },
+        {
+            "message": "Missing item type\nDisable the proxy for communicating to the SOS",
+            "line": " ..\\..\\src\\js\\SOS\\utility\\Proxy.js:57"
+        },
+        {
+            "message": "Missing item type\nIE doesn't include the toString property when iterating over an object's\nproperties with the for(property in object) syntax.  Explicitly check if\nthe source has its own toString property.",
+            "line": " ..\\..\\src\\js\\SOS\\utility\\Util.js:723"
+        },
+        {
+            "message": "Missing item type\nCopy mandatory properties from 'this' to the given object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:225"
+        },
+        {
+            "message": "Missing item type\nValidate the internal capabilities object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:406"
+        },
+        {
+            "message": "Missing item type\nSet the config.observation.responseFormat member to an available\nformat of the given type, parsed from the capabilities object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:415"
+        },
+        {
+            "message": "Missing item type\nGet the latest observations for a given FOI",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:848"
+        },
+        {
+            "message": "Missing item type\nGet the latest observations for a given SOS.Offering object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:864"
+        },
+        {
+            "message": "Missing item type\nGet requested observations for a given SOS.Offering object\nbetween given start and end datetimes",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:881"
+        },
+        {
+            "message": "Missing item type\nValidate the internal observations object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:899"
+        },
+        {
+            "message": "Missing item type\nGet a count of the number of records contained in the internal\nobservations object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:908"
+        },
+        {
+            "message": "Missing item type\nGet the observation for the given index from the internal\nobservations object",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:925"
+        },
+        {
+            "message": "Missing item type\nGet the observation for the given index from the internal\nobservations object, as long as it matches the given filter rules",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:943"
+        },
+        {
+            "message": "Missing item type\nAdd some standard properties to the given observation record",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:977"
+        },
+        {
+            "message": "Missing item type\nAscertain that the given observation record has FOI properties",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:990"
+        },
+        {
+            "message": "Missing item type\nGet the FOI object from the given observation record",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:1002"
+        },
+        {
+            "message": "Missing item type\nGet details for the given FOI",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:1011"
+        },
+        {
+            "message": "Missing item type\nGet the description for the given procedure",
+            "line": " ..\\..\\src\\js\\SOS\\SOS.js:1020"
+        }
+    ]
+}

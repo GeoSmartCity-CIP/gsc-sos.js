@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>..\..\src\js\SOS\Entity\Entities\ObservationRecord.js - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: ..\..\src\js\SOS\Entity\Entities\ObservationRecord.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+﻿/**
+ * Instancia un objeto ObservationRecord
+ *
+ * @class ObservationRecord
+ * @extends SOS.Entity
+ * @param {object} Objeto de configuración {id, featureOfInterest[{ id, name }], observedProperty[], time, procedure[], type, result{ type, uom, value }} 
+ */
+SOS.entity.ObservationRecord = function (options) {
+    var _ent = this;
+    _ent.entityName = &#x27;ObservationRecord&#x27;;
+
+    if (options.oM_Observation)
+        options = options.oM_Observation;
+
+    _ent.id = options[&#x27;@id&#x27;] || options.id;
+
+    _ent.featuresOfInterest = [];
+    if (options.featureOfInterest instanceof Array) {
+        for (var i = 0; i &lt; options.featureOfInterest.length; i++) {
+            _ent.featuresOfInterest.push({
+                id: options.featureOfInterest[i][&#x27;@href&#x27;] || options.featureOfInterest[i].id,
+                name: options.featureOfInterest[i][&#x27;@title&#x27;] || options.featureOfInterest[i].name
+            });
+        }
+    } else {
+        _ent.featuresOfInterest.push({
+            id: options.featureOfInterest[&#x27;@href&#x27;] || options.featureOfInterest.id,
+            name: options.featureOfInterest[&#x27;@title&#x27;] || options.featureOfInterest.name
+        });
+    }
+
+    _ent.observedProperty = [];
+    if (options.observedProperty instanceof Array) {
+        for (var i = 0; i &lt; options.observedProperty.length; i++)
+            _ent.observedProperty.push(options.observedProperty[i][&#x27;@href&#x27;] || options.observedProperty[i]);
+    } else _ent.observedProperty.push(options.observedProperty[&#x27;@href&#x27;] || options.observedProperty);
+
+    var newDate = function (D) {
+        D = new Date(D);
+        var newDate = new Date(D.getTime() + D.getTimezoneOffset() * 60 * 1000);
+        var offset = D.getTimezoneOffset() / 60;
+        var hours = D.getHours();
+
+        newDate.setHours(hours + offset);
+
+        return newDate;
+    }
+
+    if (options.phenomenonTime.timeInstant)
+        _ent.time = newDate(options.phenomenonTime.timeInstant.timePosition);
+    else if (options.phenomenonTime.timePeriod)
+        _ent.time = [newDate(options.phenomenonTime.timePeriod.beginPosition), newDate(options.phenomenonTime.timePeriod.endPosition)];
+    else if (options.time)
+        _ent.time = options.time;
+
+
+    _ent.procedure = [];
+    if (options.procedure instanceof Array) {
+        for (var i = 0; i &lt; options.procedure.length; i++)
+            _ent.procedure.push(options.procedure[i][&#x27;@href&#x27;] || options.procedure[i]);
+    } else _ent.procedure.push(options.procedure[&#x27;@href&#x27;] || options.procedure);
+
+    if (options.type &amp;&amp; options.type[&#x27;@href&#x27;])
+        _ent.type = options.type[&#x27;@href&#x27;];
+    else _ent.type = options.type;
+
+    if (options.result) {
+        var allowedCvtr = [];
+        var converter = new SOS.Utils.Converter.DataTypeConverter();
+        allowedCvtr.push(converter.createConverter(SOS.Utils.Converter.Types.FLOAT));
+        allowedCvtr.push(converter.createConverter(SOS.Utils.Converter.Types.INT));
+
+        if (options.result[&#x27;@type&#x27;]) {
+            switch (options.result[&#x27;@type&#x27;].split(&#x27;:&#x27;).pop().toLowerCase()) {
+                case &#x27;referencetype&#x27;:
+                    _ent.result = {
+                        type: options.result[&#x27;@title&#x27;],
+                        uom: &#x27;&#x27;,
+                        value: &#x27;&#x27;
+                    };
+                    break;
+                case &#x27;boolean&#x27;:
+                    _ent.result = {
+                        uom: options.result[&#x27;@uom&#x27;] || &#x27;&#x27;,
+                        value: options.result[&#x27;#text&#x27;] == &#x27;true&#x27;
+                    };
+                    break;
+                case &#x27;integer&#x27;:
+                    _ent.result = {
+                        uom: options.result[&#x27;@uom&#x27;] || &#x27;&#x27;,
+                        value: parseInt(options.result[&#x27;#text&#x27;])
+                    };
+                    break;
+                case &#x27;string&#x27;:
+                    _ent.result = {
+                        uom: options.result[&#x27;@uom&#x27;] || &#x27;&#x27;,
+                        value: options.result[&#x27;#text&#x27;]
+                    };
+                    break;
+                case &#x27;measuretype&#x27;:
+                    var val = options.result[&#x27;#text&#x27;];
+
+                    _ent.result = {
+                        uom: options.result[&#x27;@uom&#x27;],
+                        value: val
+                    };
+
+                    for (var i = 0; i &lt; allowedCvtr.length; i++) {
+                        if (allowedCvtr[i].is(val)) {
+                            val = allowedCvtr[i].convert(val);
+                            _ent.result.value = val;
+                            break;
+                        }
+                    }
+            }
+        }
+        else {
+            _ent.result = {
+                type: options.result.type,
+                uom: options.result.uom,
+                value: options.result.value
+            };
+        }
+    }
+};
+/**
+ * Contiene el identificador del registro 
+ * @property id
+ * @type string 
+ */
+/**
+ * Contiene los posibles featuresOfInterest relacionados con la observación
+ * @property featureOfInterest
+ * @type array - {object} id, name
+ */
+/**
+ * Contiene los las propiedades observadas de la observación
+ * @property observedProperty
+ * @type array
+ */
+/**
+ * Contiene la fecha de la medición | resultado cálculo de la observación
+ * @property time
+ * @type date | [date, date]
+ */
+/**
+ * Contiene el procedimiento con el cual se ha realizado la medición | resultado cálculo
+ * @property procedure
+ * @type []
+ */
+/**
+ * Contiene el tipo de formato de la observación
+ * @property type
+ * @type string
+ */
+/**
+ * Contiene el resultado con la unidad de medida y el valor { type, uom, value }
+ * @property result
+ * @type {object}
+ */
+
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

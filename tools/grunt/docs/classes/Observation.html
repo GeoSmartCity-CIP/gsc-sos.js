@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Observation - gsc-sos.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="gsc-sos.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Capabilities.html">Capabilities</a></li>
+            
+                <li><a href="../classes/DescribeSensor.html">DescribeSensor</a></li>
+            
+                <li><a href="../classes/FeatureOfInterest.html">FeatureOfInterest</a></li>
+            
+                <li><a href="../classes/FeatureOfInterestRecord.html">FeatureOfInterestRecord</a></li>
+            
+                <li><a href="../classes/Observation.html">Observation</a></li>
+            
+                <li><a href="../classes/ObservationById.html">ObservationById</a></li>
+            
+                <li><a href="../classes/ObservationRecord.html">ObservationRecord</a></li>
+            
+                <li><a href="../classes/Offering.html">Offering</a></li>
+            
+                <li><a href="../classes/SOS.html">SOS</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>Observation Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends SOS.Entity
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l2"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:2</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>Instancia un objeto Observation.</p>
+
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method">
+                                <a href="#method_getObservation">getObservation</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getObservationFirst">getObservationFirst</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getObservationFromTo">getObservationFromTo</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getObservationLatest">getObservationLatest</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property">
+                                <a href="#property_filters">filters</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_sortByDateTime">sortByDateTime</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_valueReference">valueReference</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_getObservation" class="method item">
+    <h3 class="name"><code>getObservation</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[params]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[off]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l87"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:87</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita las observaciones que cumplan con los filtros indicados, si no se indican filtros obtendrá todos las observaciones disponibles. </p>
+<p>Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[params]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] }, 
+temporal: { operator: &#39;After&#39;, on: &#39;resultTime&#39; | &#39;phenomenonTime&#39;, operand: &#39;TimeInstant&#39;, timeEvent: new Date().getDate() - 1 } }. - Todos son opcionales</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[Evento] personalizado que se lanzará al finalizar la petición</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[off]</code>
+                        <span class="type">SOS:entity.Offering</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var obs = new SOS.entity.Observation({ url: &#39;http://sos_service/service&#39; });        
+   obs.getObservation({ procedure: &#39;http://sos_service/srr/an1/qa01&#39; }).then(function (obs) {
+       obs = obs || [];            
+       console.log(&#39;Observaciones por procedimiento: &#39; + &#39;http://sos_service/srr/an1/qa01&#39;);
+       console.log(&#39;Número de observaciones: &#39; + obs.length);            
+   });        </code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getObservationFirst" class="method item">
+    <h3 class="name"><code>getObservationFirst</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[params]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[off]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l176"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:176</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita la primera observación disponible que cumpla con los filtros indicados. </p>
+<p>Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[params]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[off]</code>
+                        <span class="type">SOS:entity.Offering</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getObservationFromTo" class="method item">
+    <h3 class="name"><code>getObservationFromTo</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[params]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[off]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l228"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:228</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita las observaciones disponibles que cumpla con los filtros indicados entre fecha desde y fecha hasta. 
+Completa la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.<br>Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[params]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[off]</code>
+                        <span class="type">SOS:entity.Offering</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var obs = new SOS.entity.Observation({ url: &#39;http://sos_service/service&#39; });
+   obs.getObservationFromTo({
+           featureOfInterest: &quot;http://sos_service/olk/ad1&quot;, 
+           procedure: &quot;http://sos_service/olk/ad1/cl01&quot;, 
+           observedproperty: &quot;http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#Cl2&quot;, 
+           temporal: {
+               start: new Date(2015, 6, 6, 10, 1, 0), 
+               end: new Date(2015, 6, 6, 10, 5, 0)
+           }
+       }, function (data) {
+           data = data || [];
+           console.log(data.length + &#39; elementos encontrados&#39;);
+       });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_getObservationLatest" class="method item">
+    <h3 class="name"><code>getObservationLatest</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[params]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[off]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">SOS.Promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag async">async</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l202"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:202</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Solicita la última observación disponible que cumpla con los filtros indicados. 
+Completa la propiedad SOSObservations de la instancia del objeto SOS de la propiedad sos de la entidad con las observaciones resultantes de la petición.<br>Al finalizar lanza el evento SOS_OBSERVATION_AVAILABLE, si la solicitud se lanza desde un offering lanza el evento SOS_OFFERING_OBSERVATION_AVAILABLE</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[params]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Objeto de opciones de filtrado { offering: [offs], featureOfInterest: [idsFoi], observedProperty: [propiedades], procedure: [procedimientos], 
+spatial: { srs:4326, lowerCorner: [610708, 4742220], upperCorner:[610722, 4742232] } }  - Todos son opcionales.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Función que se ejecutará al finalizar la petición - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[off]</code>
+                        <span class="type">SOS:entity.Offering</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Instacia de SOS.Offering a la cual se le completará la propiedad {observationData} con las observaciones resultantes  - Opcional.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">SOS.Promise</span>:
+                    
+                    <p>Promesa</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_filters" class="property item">
+    <h3 class="name"><code>filters</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l474"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:474</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene los filtros temporales y espaciales disponibles extraído del capabilities</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> {}</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_sortByDateTime" class="property item">
+    <h3 class="name"><code>sortByDateTime</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l480"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:480</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Ordenar las observaciones resultantes por fecha y hora</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> {true}</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_valueReference" class="property item">
+    <h3 class="name"><code>valueReference</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._src_js_SOS_Entity_Entities_Observation.js.html#l468"><code>..\..\src\js\SOS\Entity\Entities\Observation.js:468</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Contiene el nombre del atributo que hace referencia a la geometría</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> om:featureOfInterest/sams:SF_SpatialSamplingFeature/sams:shape</p>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
