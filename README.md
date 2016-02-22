@@ -58,5 +58,5 @@ The library is under development.
 ### To contribute
 Please read the [contributors' guide](contributing.md).
 
-### Licence
+### License
 gsc-sos.js is under the [MIT-LICENSE](license).
