@@ -54,6 +54,7 @@ sos.foiFormatter.getFeatureOfInterestByPoint(4326, [42.843, -1.5804], 0.01)
 
 ### Status 
 The library is under development.
+Release 0.3.0-beta
 
 ### To contribute
 Please read the [contributors' guide](contributing.md).
