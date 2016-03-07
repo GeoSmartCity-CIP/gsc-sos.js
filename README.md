@@ -60,4 +60,4 @@ Release 0.3.0-beta
 Please read the [contributors' guide](contributing.md).
 
 ### License
-gsc-sos.js is under the [MIT-LICENSE](license).
+gsc-sos.js is under the [GNU GPL version 2](license).
